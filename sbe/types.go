@@ -172,6 +172,22 @@ type OrdStatusCxlRej byte
 // const is OrderStatusCancelReplaceRejected
 type OrdStatusCxrRej byte
 
+// line 32, description: Order Status Exp
+// const is OrderStatusExpired
+type OrdStatusExp byte
+
+// line 33, description: Order status of New
+// const is OrderStatusNew
+type OrdStatusNew byte
+
+// line 34, description: Pending Cancel Status - e.g. result of Order Cancel Request <F>
+// const is OrderStatusPendingCancel
+type OrdStatusPendCxl byte
+
+// line 35, description: Order Status Reject
+// const is OrderStatusRejected
+type OrdStatusRej byte
+
 // --- END Order Status Types ---
 
 /*
@@ -243,6 +259,10 @@ const(
      OrderStatusCanceled OrdStatusCxl = '4'
      OrderStatusCancelRejected OrdStatusCxlRej = 'U'
      OrderStatusCancelReplaceRejected OrdStatusCxrRej = 'U'
+     OrderStatusExpired OrdStatusExp = 'C'
+     OrderStatusNew OrdStatusNew = '0'
+     OrderStatusPendingCancel OrdStatusPendCxl = '6'
+     OrderStatusRejected OrdStatusRej = '8'
 )
 
 /*
