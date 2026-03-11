@@ -23,6 +23,7 @@ complex64 complex128
 
 /*
  * --- Types Definition (from CME Group ilinkbinary.xml) ---
+ * "line" refers to line # in ilinkbinary.xml file
  */
 
 // ilinkbinary.xml line 67 to 74 basic types, check Constants (basic types) for NULL values
@@ -44,6 +45,10 @@ type LocalMktDate uint16
 // ilinkbinary.xml line 66 type
 type EnumNULL uint8
 
+// line 28, description: NoPtyUpd
+// const is NoPtyUpdValue
+type NoPtyUpd uint8
+
 // ilinkbinary.xml line 4 to line 20
 // line 4, description: char
 type CHAR byte
@@ -62,6 +67,7 @@ type CrossPrioritization byte
 // line 8, description: CrossType
 type CrossType byte
 
+
 /*
  * The below 2 Cancel Types are
  * FIX 4.4 : CxlRejResponseTo <434> field
@@ -74,11 +80,14 @@ type CxlRejRsp byte
 // line 10, description: Cancel Replace Reject
 // const is OrderCancelReplaceRequestRejected
 type CxrRejRsp byte
+
 // --- END CxlRejResponseTo Types ---
+
 
 // line 11, description: ExchangeFlowType
 // const is ExchangeFlowType
 type ExchFlowTyp [11]byte
+
 
 /*
  * Below Execution Types correspond to FIX 4.4 : ExecType <150> field
@@ -119,7 +128,14 @@ type ExecTypePendModify byte
 // line 20, description: Execution type for trade, fill or partial fill
 // const is ExecutionTrade
 type ExecTypeTrade byte
+
+// line 27, description: ModifyStatus, old OrdStatus(39) - 5, ExecType(150) - 5 Replace
+// https://www.onixs.biz/fix-dictionary/5.0/app_6_f.html
+// const is ExecutionReplaceStatus
+type ModifyStatus byte
+
 // --- END Execution Types ---
+
 
 // line 21, description: HMACVersion
 // const is HMACVersionValue
@@ -129,6 +145,34 @@ type HMACVersion [13]byte
 // const is LegSecIDSourceExchangeSymbol
 type LegSecIDSource byte
 
+
+/*
+ * Mass Action FIX 5.0 SP2 : MassActionType <1373> field
+ */
+
+ // line 26, description: Mass action type to represent mass cancel
+type MassAction byte
+
+// --- END Mass Action Types ---
+
+
+/*
+ * --- Order Status Types / Partially Matched FIX 4.4 : OrdStatus <39> field ---
+ */
+
+// line 29, description: Ord Status Cxl
+// const is OrderStatusCanceled
+type OrdStatusCxl byte
+
+// line 30, description: OrdStatusCxlRej
+// const is OrderStatusCancelRejected
+type OrdStatusCxlRej byte
+
+// line 31, description: OrdStatusCxrRej
+// const is OrderStatusCancelReplaceRejected
+type OrdStatusCxrRej byte
+
+// --- END Order Status Types ---
 
 /*
  * --- Constants (basic types) ---
@@ -142,6 +186,7 @@ const(
      EnumNULLValue UInt8 = 255
      Int32NULL Int32 = 2147483647
      LocalMktDateNULL LocalMktDate = 65535
+     NoPtyUpdValue NoPtyUpd = '1'
 )
 
 /*
@@ -174,14 +219,31 @@ const(
      ExecutionPendingCanceled ExecTypePendCxl = '6'
      ExecutionPendingReplace ExecTypePendModify = 'E'
      ExecutionTrade ExecTypeTrade = 'F'
+     ExecutionReplaceStatus ModifyStatus = '5'
 )
 
 /*
- * --- Leg Security ID Source TYpes / FIX 4.4 : FIX 4.4 : LegSecurityIDSource <603> field ---
+ * --- Leg Security ID Source Type Values / FIX 4.4 : FIX 4.4 : LegSecurityIDSource <603> field ---
  */
  const(
      LegSecIDSourceExchangeSymbol LegSecIDSource = '8'
  )
+
+/*
+ * --- Mass Action Type Values / FIX 5.0 SP2 : MassActionType <1373> field ---
+ */
+const(
+     MassActionCancelOrders MassAction = '3'
+)
+
+/*
+ * --- Order Status Type Values / Partially Matched FIX 4.4 : OrdStatus <39> field ---
+ */
+const(
+     OrderStatusCanceled OrdStatusCxl = '4'
+     OrderStatusCancelRejected OrdStatusCxlRej = 'U'
+     OrderStatusCancelReplaceRejected OrdStatusCxrRej = 'U'
+)
 
 /*
  * --- Package Level Variables ---
