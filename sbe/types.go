@@ -415,3 +415,25 @@ const(
 var ClientFlowTypeValue = ClientFlowType{'I', 'D', 'E', 'M', 'P', 'O', 'T', 'E', 'N', 'T'}
 var ExchangeFlowType = ExchFlowTyp{'R', 'E', 'C', 'O', 'V', 'E', 'R', 'A', 'B', 'L', 'E'}
 var HMACVersionValue = HMACVersion{'C', 'M', 'E', '-', '1', '-', 'S', 'H', 'A', '-', '2', '5', '6'}
+
+/*
+ * --- IsNULL() methods for NULL types ---
+ */
+
+func(v Int8NULL) isNULL() bool{ return v == Int8NULLValue }
+
+func(v Int32NULL) isNULL() bool { return v == Int32NULLValue }
+
+func(v UInt8NULL) isNULL() bool { return v == UInt8NULLValue }
+
+func(v UInt16NULL) isNULL() bool { return v == UInt16NULLValue }
+
+func(v UInt32NULL) isNULL() bool {return v == UInt32NULLValue }
+
+func(v UInt64NULL) isNULL() bool { return v == UInt64NULLValue }
+
+func(v EnumNULL) isNULL() bool { return v == EnumNULLValue }
+
+func(v LocalMktDate) isNULL() bool { return v == LocalMktDateNULL }
+
+func(v CHAR) isNULL() bool { return v == CharNULL }
