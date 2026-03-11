@@ -27,16 +27,29 @@ complex64 complex128
  */
 
 // ilinkbinary.xml line 67 to 74 basic types, check Constants (basic types) for NULL values
+// line 67
 type UInt16 uint16
-
+// line 68
+type UInt16NULL uint16
+// line 69
 type UInt32 uint32
-
+// line 70
+type UInt32NULL uint32
+// line 71
 type UInt64 uint64
-
+// line 72
+type UInt64NULL uint64
+// line 73
 type UInt8 uint8
+// line 74
+type UInt8NULL uint8
 
 // ilinkbinary.xml line 22 to 23 basic types, check Constants (basic types) for NULL values
+// line 22
 type Int32 int32
+
+// line 23
+type Int32NULL int32
 
 // line 25 description: LocalMktDate
 // const is LocalMktDateNULL
@@ -302,16 +315,16 @@ type StringLength6 [6]byte
  */
 
 const(
-     UInt16NULL UInt16 = 65535
-     UInt32NULL UInt32 = 4294967295
-     UInt64NULL UInt64 = 18446744073709551615
-     UInt8NULL UInt8 = 255
+     UInt16NULLValue UInt16NULL = 65535
+     UInt32NULLValue UInt32NULL = 4294967295
+     UInt64NULLValue UInt64NULL = 18446744073709551615
+     UInt8NULLValue UInt8NULL = 255
      CharNULL CHAR = 0 // line 65
-     EnumNULLValue UInt8 = 255
+     EnumNULLValue EnumNULL = 255
      UDIValue UDI = 'Y'
-     Int32NULL Int32 = 2147483647
+     Int32NULLValue Int32NULL = 2147483647
      LocalMktDateNULL LocalMktDate = 65535
-     NoPtyUpdValue NoPtyUpd = '1'
+     NoPtyUpdValue NoPtyUpd = 1
      GenAcceptedMktParID PartyIDSource = 'C'
      SecurityIDSourceValue SecurityIDSource = '8'
      SecurityReqTypeUSDCreation SecurityReqType = '1'
@@ -375,7 +388,7 @@ const(
      OrderStatusNew OrdStatusNew = '0'
      OrderStatusPendingCancel OrdStatusPendCxl = '6'
      OrderStatusRejected OrdStatusRej = '8'
-     OrderStatusPendingReplace = 'E'
+     OrderStatusPendingReplace PendModStatus = 'E'
 )
 
 /*
