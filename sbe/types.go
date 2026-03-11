@@ -51,7 +51,7 @@ type NoPtyUpd uint8
 
 // ilinkbinary.xml line 4 to line 20
 // line 4, description: char
-type CHAR byte
+type CHAR byte 
 
 // line 5, description: ClientFlowType
 // const is ClientFlowTypeValue
@@ -67,6 +67,9 @@ type CrossPrioritization byte
 // line 8, description: CrossType
 type CrossType byte
 
+// line 64, description UDI
+// const is UDIValue
+type UDI byte
 
 /*
  * The below 2 Cancel Types are
@@ -145,6 +148,18 @@ type HMACVersion [13]byte
 // const is LegSecIDSourceExchangeSymbol
 type LegSecIDSource byte
 
+// line 36, description: PartyIDSource
+// const is GenAcceptedMktParID
+// C = Generally accepted market participant identifier (e.g. NASD mnemonic)
+type PartyIDSource byte
+
+// line 41, description SecurityIDSource
+// const is SecurityIDSourceValue
+type SecurityIDSource byte
+
+// line 42, description: ecurity request type for UDS creation
+// const is SecurityReqTypeUSDCreation
+type SecurityReqType byte
 
 /*
  * Mass Action FIX 5.0 SP2 : MassActionType <1373> field
@@ -158,6 +173,7 @@ type MassAction byte
 
 /*
  * --- Order Status Types / Partially Matched FIX 4.4 : OrdStatus <39> field ---
+ * https://www.onixs.biz/fix-dictionary/4.4/tagnum_39.html
  */
 
 // line 29, description: Ord Status Cxl
@@ -188,7 +204,98 @@ type OrdStatusPendCxl byte
 // const is OrderStatusRejected
 type OrdStatusRej byte
 
+// line 37, description: Pending Replace Status
+// const is: OrderStatusPendingReplace
+type PendModStatus byte
+
 // --- END Order Status Types ---
+
+/*
+ * --- Quote Cancel Types ---
+ */
+
+// line 38, description: Quote Cancel by a list of Security Groups
+// const is QuoteCancelBySecurityGroup
+type QuoteCxTypeByGroup uint8
+
+// line 39, description: Quote Cancel Type by Instrument
+// const is QuoteCancelByInstrument
+type QuoteCxTypeByInstr uint8
+
+// line 40, description: Quote Cancel Type by Set
+// const is QuoteCancelBySet
+type QuoteCxTypeBySet uint8
+
+// --- END Quote Cancel Types ---
+
+/*
+ * --- String Types ---
+ */
+
+ // line 43, description: String with length of 10 required
+type String10Req [10]byte
+
+// line 44, description: Optional string with length of 17
+type String17 [17]byte
+
+// line 45, description: StringLength2
+type String2 [2]byte
+
+// line 46, description: String Length 20
+type String20 [20]byte
+
+// line 47, description: String With Length 20 (required)
+type String20Req [20]byte
+
+// line 48, description: String with length of 256
+type String256 [256]byte
+
+// line 49, description: String Length of 3 characters
+type String3 [3]byte
+
+// line 50, description: String Length 30
+type String30 [30]byte
+
+// line 51, description: String with length of 30 required
+type String30Req [30]byte
+
+// line 52, description: String with length of 32 required
+type String32Req [32]byte
+
+// line 53, description: String with length 3 required
+type String3Req [3]byte
+
+// line 54, description: String length 40 char
+type String40 [40]byte
+
+// line 55, description: String with length 48
+type String48 [48]byte
+
+// line 56, description: Optional string with length of 5
+type String5 [5]byte
+
+// lin 57, description: String with length of 5 required
+type String5Req [5]byte
+
+// line 58, description: String with length of 60
+type String60 [60]byte
+
+// line 59, description: String with length of 75
+type String75 [75]byte
+
+// line 60, description: String field length 8
+type String8 [8]byte
+
+// line 61, description: String with length of 8 required
+type String8Req [8]byte
+
+// line 62, description: String with length of 35
+type StringLength35 [35]byte
+
+// line 63, description: StringLength6
+type StringLength6 [6]byte
+
+ // --- END String Types ---
 
 /*
  * --- Constants (basic types) ---
@@ -199,10 +306,15 @@ const(
      UInt32NULL UInt32 = 4294967295
      UInt64NULL UInt64 = 18446744073709551615
      UInt8NULL UInt8 = 255
+     CharNULL CHAR = 0 // line 65
      EnumNULLValue UInt8 = 255
+     UDIValue UDI = 'Y'
      Int32NULL Int32 = 2147483647
      LocalMktDateNULL LocalMktDate = 65535
      NoPtyUpdValue NoPtyUpd = '1'
+     GenAcceptedMktParID PartyIDSource = 'C'
+     SecurityIDSourceValue SecurityIDSource = '8'
+     SecurityReqTypeUSDCreation SecurityReqType = '1'
 )
 
 /*
@@ -263,6 +375,17 @@ const(
      OrderStatusNew OrdStatusNew = '0'
      OrderStatusPendingCancel OrdStatusPendCxl = '6'
      OrderStatusRejected OrdStatusRej = '8'
+     OrderStatusPendingReplace = 'E'
+)
+
+/*
+ * --- Quote Cancel Type Values ---
+ */
+
+const(
+     QuoteCancelBySecurityGroup QuoteCxTypeByGroup = 3
+     QuoteCancelByInstrument QuoteCxTypeByInstr = 1
+     QuoteCancelBySet QuoteCxTypeBySet = 100
 )
 
 /*
