@@ -26,6 +26,13 @@ complex64 complex128
  * "line" refers to line # in ilinkbinary.xml file
  */
 
+// Additional Types For composites.go (from composites part)
+// line 79
+// const is Int8NULL
+type Int8 int8
+
+type Int8NULL int8
+
 // ilinkbinary.xml line 67 to 74 basic types, check Constants (basic types) for NULL values
 // line 67
 type UInt16 uint16
@@ -322,6 +329,7 @@ const(
      CharNULL CHAR = 0 // line 65
      EnumNULLValue EnumNULL = 255
      UDIValue UDI = 'Y'
+     Int8NULLValue Int8NULL = 127
      Int32NULLValue Int32NULL = 2147483647
      LocalMktDateNULL LocalMktDate = 65535
      NoPtyUpdValue NoPtyUpd = 1
