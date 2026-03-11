@@ -1,5 +1,9 @@
 package sbe
 
+import (
+	"math"
+)
+
 /*
  * This file contains composite types in CME Group ilinkbinary.xml file
  * Composite types from line 75 to 114
@@ -43,6 +47,27 @@ type Decimal32NULL struct{
 	Exponent Int8NULL				// presence="optional" nullValue="127" primitiveType="int8" gives Int8NULL
 }
 
-func (d Decimal32NULL) isNULL() bool{
+// IsNULL method to check if a Dcimal32NULL is null
+func (d Decimal32NULL) IsNULL() bool{
 	return d.Mantissa == Int32NULLValue || d.Exponent == Int8NULLValue
 }
+
+// SBE decimal encoding
+// value = mantissa × 10^exponent
+// e.g. 12345.67 
+// mantissa = 1234567
+// exponent = -2
+// 12345.67 = mantisa * 10^(exponent)
+// float64 binary is not reliable for transmission
+// instead transmit mantissa and exponent
+// note func math.Pow10() float64
+
+// ToFloat64 returns the result as float64
+func (d Decimal32NULL) ToFloat64() float64{
+	return float64(d.Mantissa) * math.Pow10(int(d.Exponent));
+}
+
+/*
+ * -- Decimal32NULL Composite Type ---
+ * line 79
+ */
