@@ -1,7 +1,9 @@
 package sbe
 
 import (
+	"fmt"
 	"math"
+	"time"
 )
 
 /*
@@ -49,7 +51,7 @@ type Decimal32NULL struct{
 
 // IsNULL method to check if a Dcimal32NULL is null
 func (d Decimal32NULL) IsNULL() bool{
-	return d.Mantissa == Int32NULLValue || d.Exponent == Int8NULLValue
+	return d.Mantissa.IsNULL() || d.Exponent.IsNULL()
 }
 
 // SBE decimal encoding
@@ -68,6 +70,76 @@ func (d Decimal32NULL) ToFloat64() float64{
 }
 
 /*
- * -- Decimal32NULL Composite Type ---
- * line 79
+ * -- Decimal64NULL Composite Type ---
+ * line 83
  */
+
+type Decimal64NULL struct{
+	Mantissa Int64NULL // description="mantissa" presence="optional" nullValue="9223372036854775807" primitiveType="int64"
+	Exponent Int8NULL
+}
+
+// IsNULL method to return if Decimal64NULL is null
+func (d Decimal64NULL) IsNULL() bool{
+	return d.Mantissa.IsNULL() || d.Exponent.IsNULL()
+}
+
+// ToFloat64 returns the result as float64
+func (d Decimal64NULL) ToFloat64() float64{
+	return float64(d.Mantissa) * math.Pow10(int(d.Exponent))
+}
+
+/*
+ * -- MaturityMonthYear Composite Type ---
+ * line 87
+ * description: Year, Month and Date
+ */
+
+type MaturityMonthYear struct{
+	Year UInt16NULL
+	Month UInt8NULL
+	Day UInt8NULL
+	Week UInt8NULL
+}
+
+// function isNULL returns true only when all attributes are null
+func (m MaturityMonthYear) IsNULL() bool{
+	return m.Year.IsNULL() && m.Month.IsNULL() && m.Day.IsNULL() && m.Week.IsNULL()
+}
+
+// ToTime method returns time.Time and bool
+func(m MaturityMonthYear) ToTime() (time.Time, bool){
+	// Maturity Month Year requires at least Year and Month to be present
+	if(m.Year.IsNULL() || m.Month.IsNULL()){
+		// return zero value of time.Time and boolean false
+		return time.Time{}, false
+	}
+
+	day := 1
+	// else, default day to 1 and set day
+	if !m.Day.IsNULL() {
+		day = int(m.Day)
+	}
+
+	return time.Date(
+		int(m.Year),
+		time.Month(m.Month),
+		day,
+		0, 0, 0, 0,
+		time.UTC,
+	), true
+}
+
+// ToString function to return human readable fotmat for logging
+func (m MaturityMonthYear)  ToString() string{
+	if(m.Year.IsNULL() || m.Month.IsNULL()){
+		return ""
+	}
+	if(!m.Day.IsNULL()){
+		return fmt.Sprintf("%04d-%02d-%02d", m.Year, m.Month, m.Day)
+	}
+	if(!m.Week.IsNULL()){
+		return fmt.Sprintf("%04d-%02d-W%02d-D%02d", m.Year, m.Month, m.Week, m.Day)
+	}
+	return fmt.Sprintf("%04d-%02d", m.Year, m.Month)
+}

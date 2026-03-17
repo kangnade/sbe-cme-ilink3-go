@@ -33,6 +33,11 @@ type Int8 int8
 
 type Int8NULL int8
 
+// line 83
+type Int64 int64
+
+type Int64NULL int64
+
 // ilinkbinary.xml line 67 to 74 basic types, check Constants (basic types) for NULL values
 // line 67
 type UInt16 uint16
@@ -331,6 +336,7 @@ const(
      UDIValue UDI = 'Y'
      Int8NULLValue Int8NULL = 127
      Int32NULLValue Int32NULL = 2147483647
+     Int64NULLValue Int64NULL = 9223372036854775807
      LocalMktDateNULL LocalMktDate = 65535
      NoPtyUpdValue NoPtyUpd = 1
      GenAcceptedMktParID PartyIDSource = 'C'
@@ -420,20 +426,22 @@ var HMACVersionValue = HMACVersion{'C', 'M', 'E', '-', '1', '-', 'S', 'H', 'A', 
  * --- IsNULL() methods for NULL types ---
  */
 
-func(v Int8NULL) isNULL() bool{ return v == Int8NULLValue }
+func(v Int8NULL) IsNULL() bool{ return v == Int8NULLValue }
 
-func(v Int32NULL) isNULL() bool { return v == Int32NULLValue }
+func(v Int32NULL) IsNULL() bool { return v == Int32NULLValue }
 
-func(v UInt8NULL) isNULL() bool { return v == UInt8NULLValue }
+func(v Int64NULL) IsNULL() bool { return v == Int64NULLValue }
 
-func(v UInt16NULL) isNULL() bool { return v == UInt16NULLValue }
+func(v UInt8NULL) IsNULL() bool { return v == UInt8NULLValue }
 
-func(v UInt32NULL) isNULL() bool {return v == UInt32NULLValue }
+func(v UInt16NULL) IsNULL() bool { return v == UInt16NULLValue }
 
-func(v UInt64NULL) isNULL() bool { return v == UInt64NULLValue }
+func(v UInt32NULL) IsNULL() bool {return v == UInt32NULLValue }
 
-func(v EnumNULL) isNULL() bool { return v == EnumNULLValue }
+func(v UInt64NULL) IsNULL() bool { return v == UInt64NULLValue }
 
-func(v LocalMktDate) isNULL() bool { return v == LocalMktDateNULL }
+func(v EnumNULL) IsNULL() bool { return v == EnumNULLValue }
 
-func(v CHAR) isNULL() bool { return v == CharNULL }
+func(v LocalMktDate) IsNULL() bool { return v == LocalMktDateNULL }
+
+func(v CHAR) IsNULL() bool { return v == CharNULL }
