@@ -143,3 +143,9 @@ func (m MaturityMonthYear)  ToString() string{
 	}
 	return fmt.Sprintf("%04d-%02d", m.Year, m.Month)
 }
+
+/*
+ * -- PRICE9 Composite Type ---
+ * line 93
+ * description: Price with constant exponent -9
+ */
