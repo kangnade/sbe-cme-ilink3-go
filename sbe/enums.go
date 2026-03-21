@@ -77,3 +77,19 @@ func (acctType ClearingAcctType) IsNULL() bool{
 	return acctType == ClearingAcctTypeNULL
 }
 
+/*
+* CmtaGiveUpCD, charNULL
+* Line 132
+*/
+
+type CmtaGiveUpCD CHAR
+
+const(
+	CmtaGiveUpCDGiveUp CmtaGiveUpCD = 'G'
+	CmtaGiveUpCDSGXoffset CmtaGiveUpCD = 'S'
+	CmtaGiveUpCDNULL = 0
+)
+
+func (c CmtaGiveUpCD) IsNULL() bool{
+	return c == CmtaGiveUpCDNULL
+}
