@@ -35,7 +35,7 @@ func (d DATA) ToString() string{
 }
 
 // function to check if data is empty, for slice []byte, check len() == 0
-func (d DATA) isNULL() bool{
+func (d DATA) IsNULL() bool{
 	return d.Length == 0 || len(d.VarData) == 0
 }
 
@@ -66,7 +66,7 @@ func (d Decimal32NULL) IsNULL() bool{
 
 // ToFloat64 returns the result as float64
 func (d Decimal32NULL) ToFloat64() float64{
-	return float64(d.Mantissa) * math.Pow10(int(d.Exponent));
+	return float64(d.Mantissa) * math.Pow10(int(d.Exponent))
 }
 
 /*
@@ -151,7 +151,7 @@ func (m MaturityMonthYear)  ToString() string{
  */
 
 // The exponent is always constant -9 for both PRICE9 and PRICENULL9
-const PRICE9Exponent Int8 = -0
+const PRICE9Exponent Int8 = -9
 
 // Price9 struct definition
 type PRICE9 struct{
@@ -177,7 +177,7 @@ func (p PRICE9) ToFloat64() float64{
  }
 
 // IsNULL function for PRICENULL9
-func (p PRICENULL9) IsNull() bool{
+func (p PRICENULL9) IsNULL() bool{
 	return p.Mantissa.IsNULL()
 }
 
@@ -188,7 +188,7 @@ func (p PRICENULL9) ToFloat64() float64{
 
 /*
  * -- GroupSize Composite Type ---
- * line 93
+ * line 101
  * description: Repeating group dimensions
  */
 
@@ -199,7 +199,7 @@ func (p PRICENULL9) ToFloat64() float64{
 
  /*
  * -- GroupSizeEncoding Composite Type ---
- * line 93
+ * line 105
  * description: Repeating group dimensions, with uint16 for NumInGroup
  */
  
@@ -208,3 +208,15 @@ type GroupSizeEncoding struct{
 	NumInGroup UInt16
 }
 
+ /*
+ * -- MessageHeader Composite Type ---
+ * line 109
+ * description: Template ID and length of message root
+ */
+
+ type MessageHeader struct{
+	BlockLength UInt16
+	TemplateId UInt16
+	SchemaId UInt16
+	Version UInt16
+ }
