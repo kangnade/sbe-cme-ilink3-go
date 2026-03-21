@@ -139,7 +139,7 @@ func (m MaturityMonthYear)  ToString() string{
 		return fmt.Sprintf("%04d-%02d-%02d", m.Year, m.Month, m.Day)
 	}
 	if(!m.Week.IsNULL()){
-		return fmt.Sprintf("%04d-%02d-W%02d-D%02d", m.Year, m.Month, m.Week, m.Day)
+		return fmt.Sprintf("%04d-%02d-W%02d", m.Year, m.Month, m.Week)
 	}
 	return fmt.Sprintf("%04d-%02d", m.Year, m.Month)
 }
@@ -149,3 +149,38 @@ func (m MaturityMonthYear)  ToString() string{
  * line 93
  * description: Price with constant exponent -9
  */
+
+// The exponent is always constant -9 for both PRICE9 and PRICENULL9
+const PRICE9Exponent Int8 = -0
+
+// Price9 struct definition
+type PRICE9 struct{
+	Mantissa Int64
+}
+
+// ToFloat64 function for Price9 composite type
+func (p PRICE9) ToFloat64() float64{
+	return float64(p.Mantissa) * math.Pow10(int(PRICE9Exponent))
+}
+
+/*
+ * -- PRICENULL9 Composite Type ---
+ * line 97
+ * description: Optional price with constant exponent -9
+ */
+
+ // Exponent is -9, reuse above from PRICE9
+ type PRICENULL9 struct{
+	// The Mantissa is Int64NULL
+	Mantissa Int64NULL
+ }
+
+// IsNULL function for PRICENULL9
+func (p PRICENULL9) IsNull() bool{
+	return p.Mantissa.IsNULL()
+}
+
+// ToFloat64 for PRICENULL9 type
+func (p PRICENULL9) ToFloat64() float64{
+	return float64(p.Mantissa) * math.Pow10(int(PRICE9Exponent))
+}
