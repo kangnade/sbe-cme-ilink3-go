@@ -167,6 +167,7 @@ func (p PRICE9) ToFloat64() float64{
  * -- PRICENULL9 Composite Type ---
  * line 97
  * description: Optional price with constant exponent -9
+ * since the mantissa is optional, we need IsNull to check if it is null
  */
 
  // Exponent is -9, reuse above from PRICE9
@@ -184,3 +185,26 @@ func (p PRICENULL9) IsNull() bool{
 func (p PRICENULL9) ToFloat64() float64{
 	return float64(p.Mantissa) * math.Pow10(int(PRICE9Exponent))
 }
+
+/*
+ * -- GroupSize Composite Type ---
+ * line 93
+ * description: Repeating group dimensions
+ */
+
+ type GroupSize struct{
+	BlockLength UInt16		// length of each group
+	NumInGroup UInt8		// number of entries in the group
+ }
+
+ /*
+ * -- GroupSizeEncoding Composite Type ---
+ * line 93
+ * description: Repeating group dimensions, with uint16 for NumInGroup
+ */
+ 
+type GroupSizeEncoding struct{
+	BlockLength UInt16
+	NumInGroup UInt16
+}
+
