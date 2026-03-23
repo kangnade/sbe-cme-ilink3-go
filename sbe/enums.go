@@ -85,11 +85,45 @@ func (acctType ClearingAcctType) IsNULL() bool{
 type CmtaGiveUpCD CHAR
 
 const(
-	CmtaGiveUpCDGiveUp CmtaGiveUpCD = 'G'
-	CmtaGiveUpCDSGXoffset CmtaGiveUpCD = 'S'
+	CmtaGiveUpCDGiveUp CmtaGiveUpCD = 'G'			// give up
+	CmtaGiveUpCDSGXoffset CmtaGiveUpCD = 'S'	// SGX offset
 	CmtaGiveUpCDNULL = 0
 )
 
 func (c CmtaGiveUpCD) IsNULL() bool{
 	return c == CmtaGiveUpCDNULL
+}
+
+/*
+* CrossTypeEnum, uInt8
+* Line 136
+*/
+
+type CrossTypeEnum UInt8
+
+const(
+	CrossTypeCross CrossTypeEnum = 3 		// default product configuration
+	CrossTypeRCross CrossTypeEnum = 20		// RFQ + RFC Cross
+	CrossTypeCCross CrossTypeEnum = 21		// Committed Cross
+)
+
+/*
+* CustOrdHandInst, charNULL
+* Line 141
+*/
+
+type CustOrdHandInst CHAR
+
+const(
+	CustOrdHandInstFCMProvidedScreen CustOrdHandInst = 'C'			// FCm provided screen
+	CustOrdHandInstOtherProvidedScreen CustOrdHandInst = 'D'		// Other provided screen
+	CustOrdHandInstFCMAPIorFix CustOrdHandInst = 'G'						// FCM API or FIX
+	CustOrdHandInstAlgoEngine CustOrdHandInst = 'H'							// Algo Engine
+	CustOrdHandInstDeskElectronic CustOrdHandInst = 'W'					// Desk Electronic
+	CustOrdHandInstClientElectronic CustOrdHandInst = 'Y'				// Client Electronic
+	CustOrdHandInstNULL CustOrdHandInst = 0
+)
+
+func (cohi CustOrdHandInst) IsNULL() bool {
+	return cohi == CustOrdHandInstNULL
 }
