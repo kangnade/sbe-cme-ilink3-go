@@ -261,3 +261,57 @@ func (e ExecReason) IsNull() bool{
 	return e == ExecReasonNULL
 }
 
+/*
+* ExecTypTrdCxl, CHAR
+* Line 187
+*/
+
+type ExecTypTrdCxl CHAR
+
+const(
+	// Trade Correction
+	ExecTypTrdCxlTradeCorrection			ExecTypTrdCxl = 'G'
+	// Trade Cancel
+	ExecTypTrdCxlTradeCancel					ExecTypTrdCxl = 'H'
+)
+
+/*
+* ExpCycle, uInt8NULL
+* Line 191
+*/
+
+type ExpCycle UInt8NULL
+
+const(
+	// Expire On Trading Session Close
+	ExpCycleExpireOnTradingSessionClose ExpCycle = 0
+	// Expiration at given date
+	ExpCycleExpirationatgivendate				ExpCycle = 2
+	// ExpCycle Null value
+	ExpCycleNULL												ExpCycle = 255
+)
+
+// IsNull returns true if the ExpCycle value is Null
+func (e ExpCycle) IsNull() bool{
+	return e == ExpCycleNULL
+}
+
+/*
+* FTI, uInt8NULL
+* Line 195
+*/
+
+type FTI UInt8NULL
+
+const(
+	// Backup
+	FTIBackup		FTI = 0
+	FTIPrimary	FTI = 1
+	FTINull			FTI = 255
+)
+
+// IsNull returns true if the FTI value is Null
+func (f FTI) IsNull() bool{
+	return f == FTINull
+}
+
