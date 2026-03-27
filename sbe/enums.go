@@ -127,3 +127,33 @@ const(
 func (cohi CustOrdHandInst) IsNULL() bool {
 	return cohi == CustOrdHandInstNULL
 }
+
+/*
+* CustOrdHandInst, charNULL
+* Line 149
+*/
+
+type CustOrderCapacity EnumNULL
+
+const(
+	// Member trading for their own account
+	CustOrderCapacityMemberTradingForTheirOwnAccount CustOrderCapacity = 1
+	// Member firm trading for its proprietary account
+	CustOrderCapacityMemberFirmTradingForItsProprietaryAccount CustOrderCapacity = 2
+	// Member trading for another member or non member
+	CustOrderCapacityMemberTradingForAnotherMemberOrNonmember = 3
+	// All other
+	CustOrderCapacityAllOther = 4
+	// CustOrderCapacity NULL value
+	CustOrderCapacityNULL CustOrderCapacity = 255
+)
+
+func (c CustOrderCapacity) IsNULL() bool{
+	return c == CustOrderCapacityNULL
+}
+
+/*
+* CustOrdHandInst, charNULL
+* Line 155
+*/
+
