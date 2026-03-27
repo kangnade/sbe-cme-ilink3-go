@@ -19,12 +19,12 @@ const(
 	TradeispartofanAveragePriceGroupIdentifiedbytheAvgPxGrpID AvgPxInd = 1
 	// Trade is part of a Notional Value Average Price Group
 	TradeispartofaNotionalValueAveragePriceGroup AvgPxInd = 3
-	// UInt8NULL has value 255, used for checking IsNULL()
+	// UInt8NULL has value 255, used for checking IsNull()
 	AvgPxIndNULL AvgPxInd = 255
 )
 
 // Returns if an AvgPxInd is NULL
-func (p AvgPxInd) IsNULL() bool{
+func (p AvgPxInd) IsNull() bool{
 	return p == AvgPxIndNULL
 }
 
@@ -55,7 +55,7 @@ const(
 )
 
 // Returns true if BooleanNULL is BooleanNULLValue / null
-func (b BooleanNULL) IsNULL() bool{
+func (b BooleanNULL) IsNull() bool{
 	return b == BooleanNULLValue
 }
 
@@ -73,7 +73,7 @@ const(
 )
 
 // Returns true if ClearingAcctType is null
-func (acctType ClearingAcctType) IsNULL() bool{
+func (acctType ClearingAcctType) IsNull() bool{
 	return acctType == ClearingAcctTypeNULL
 }
 
@@ -90,7 +90,7 @@ const(
 	CmtaGiveUpCDNULL = 0
 )
 
-func (c CmtaGiveUpCD) IsNULL() bool{
+func (c CmtaGiveUpCD) IsNull() bool{
 	return c == CmtaGiveUpCDNULL
 }
 
@@ -124,7 +124,7 @@ const(
 	CustOrdHandInstNULL CustOrdHandInst = 0
 )
 
-func (cohi CustOrdHandInst) IsNULL() bool {
+func (cohi CustOrdHandInst) IsNull() bool {
 	return cohi == CustOrdHandInstNULL
 }
 
@@ -148,12 +148,38 @@ const(
 	CustOrderCapacityNULL CustOrderCapacity = 255
 )
 
-func (c CustOrderCapacity) IsNULL() bool{
+func (c CustOrderCapacity) IsNull() bool{
 	return c == CustOrderCapacityNULL
 }
 
 /*
-* CustOrdHandInst, charNULL
+* DKReason, charNULL
 * Line 155
 */
 
+type DKReason CHAR
+
+const(
+	// Unknown Security
+	DKReasonUnknownSecurity							DKReason = 'A'
+	// Wrong Side
+	DKReasonWrongSide										DKReason = 'B'
+	// Quantity Exceeds Order
+	DKReasonQuantityExceedsOrder				DKReason = 'C'
+	// No Matching Order
+	DKReasonNoMatchingOrder							DKReason = 'D'
+	// Price Exceeds Limit
+	DKReasonPriceExceedsLimit						DKReason = 'E'
+	// Calculation Difference
+	DKReasonCalculationDifference				DKReason = 'F'
+	// No Matching Execution Report
+	DKReasonNoMatchingExecutionReport		DKReason = 'G'
+	// Other
+	DKReasonOther												DKReason = 'Z'
+	// DKReason NULL value
+	DKReasonNULL												DKReason = 0
+)
+
+func (d DKReason) IsNull() bool{
+	return d == DKReasonNULL
+}

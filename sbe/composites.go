@@ -35,7 +35,7 @@ func (d DATA) ToString() string{
 }
 
 // function to check if data is empty, for slice []byte, check len() == 0
-func (d DATA) IsNULL() bool{
+func (d DATA) IsNull() bool{
 	return d.Length == 0 || len(d.VarData) == 0
 }
 
@@ -49,9 +49,9 @@ type Decimal32NULL struct{
 	Exponent Int8NULL				// presence="optional" nullValue="127" primitiveType="int8" gives Int8NULL
 }
 
-// IsNULL method to check if a Dcimal32NULL is null
-func (d Decimal32NULL) IsNULL() bool{
-	return d.Mantissa.IsNULL() || d.Exponent.IsNULL()
+// IsNull method to check if a Dcimal32NULL is null
+func (d Decimal32NULL) IsNull() bool{
+	return d.Mantissa.IsNull() || d.Exponent.IsNull()
 }
 
 // SBE decimal encoding
@@ -79,9 +79,9 @@ type Decimal64NULL struct{
 	Exponent Int8NULL
 }
 
-// IsNULL method to return if Decimal64NULL is null
-func (d Decimal64NULL) IsNULL() bool{
-	return d.Mantissa.IsNULL() || d.Exponent.IsNULL()
+// IsNull method to return if Decimal64NULL is null
+func (d Decimal64NULL) IsNull() bool{
+	return d.Mantissa.IsNull() || d.Exponent.IsNull()
 }
 
 // ToFloat64 returns the result as float64
@@ -102,22 +102,22 @@ type MaturityMonthYear struct{
 	Week UInt8NULL
 }
 
-// function isNULL returns true only when all attributes are null
-func (m MaturityMonthYear) IsNULL() bool{
-	return m.Year.IsNULL() && m.Month.IsNULL() && m.Day.IsNULL() && m.Week.IsNULL()
+// function IsNull returns true only when all attributes are null
+func (m MaturityMonthYear) IsNull() bool{
+	return m.Year.IsNull() && m.Month.IsNull() && m.Day.IsNull() && m.Week.IsNull()
 }
 
 // ToTime method returns time.Time and bool
 func(m MaturityMonthYear) ToTime() (time.Time, bool){
 	// Maturity Month Year requires at least Year and Month to be present
-	if(m.Year.IsNULL() || m.Month.IsNULL()){
+	if(m.Year.IsNull() || m.Month.IsNull()){
 		// return zero value of time.Time and boolean false
 		return time.Time{}, false
 	}
 
 	day := 1
 	// else, default day to 1 and set day
-	if !m.Day.IsNULL() {
+	if !m.Day.IsNull() {
 		day = int(m.Day)
 	}
 
@@ -132,13 +132,13 @@ func(m MaturityMonthYear) ToTime() (time.Time, bool){
 
 // ToString function to return human readable fotmat for logging
 func (m MaturityMonthYear)  ToString() string{
-	if(m.Year.IsNULL() || m.Month.IsNULL()){
+	if(m.Year.IsNull() || m.Month.IsNull()){
 		return ""
 	}
-	if(!m.Day.IsNULL()){
+	if(!m.Day.IsNull()){
 		return fmt.Sprintf("%04d-%02d-%02d", m.Year, m.Month, m.Day)
 	}
-	if(!m.Week.IsNULL()){
+	if(!m.Week.IsNull()){
 		return fmt.Sprintf("%04d-%02d-W%02d", m.Year, m.Month, m.Week)
 	}
 	return fmt.Sprintf("%04d-%02d", m.Year, m.Month)
@@ -176,9 +176,9 @@ func (p PRICE9) ToFloat64() float64{
 	Mantissa Int64NULL
  }
 
-// IsNULL function for PRICENULL9
-func (p PRICENULL9) IsNULL() bool{
-	return p.Mantissa.IsNULL()
+// IsNull function for PRICENULL9
+func (p PRICENULL9) IsNull() bool{
+	return p.Mantissa.IsNull()
 }
 
 // ToFloat64 for PRICENULL9 type
