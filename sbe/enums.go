@@ -183,3 +183,81 @@ const(
 func (d DKReason) IsNull() bool{
 	return d == DKReasonNULL
 }
+
+/*
+* ExecAckStatus, uInt8
+* Line 165
+* Both const values are required as uInt8, no null required
+*/
+
+type ExecAckStatus UInt8
+
+const(
+	// Accepted
+	ExecAckStatusAccepted ExecAckStatus = 1
+	// Rejected
+	ExecAckStatusRejected ExecAckStatus = 2
+)
+
+/*
+* ExecMode, charNULL
+* Line 169
+*/
+
+type ExecMode CHAR
+
+const(
+	// Aggressive
+	ExecModeAggressive = 'A'
+	// Passive
+	ExecModePassive = 'P'
+	// null value because of charNULL type
+	ExecModeNULL = 0
+)
+
+func (e ExecMode) IsNull() bool{
+	return e == ExecModeNULL
+}
+
+/*
+* ExecReason, uInt8NULL
+* Line 173
+* uInt8NULL is optional and requires IsNull func
+*/
+
+type ExecReason UInt8NULL
+
+const(
+	// Market Exchange Option
+	ExecReasonMarketExchangeOption										ExecReason = 8
+	// Cancelled Not Best
+	ExecReasonCancelledNotBest												ExecReason = 9
+	// Cancel on Disconnect
+	ExecReasonCancelOnDisconnect											ExecReason = 100
+	// Self Match Prevention Oldest Order Cancelled
+	ExecReasonSelfMatchPreventionOldestOrderCancelled ExecReason = 103
+	// Cancel On Globex Credit Controls Violation
+	ExecReasonCancelOnGlobexCreditControlsViolation 	ExecReason = 104
+	// Cancel From Firmsoft
+	ExecReasonCancelFromFirmsoft										  ExecReason = 105
+	// Cancel From Risk Management API 
+	ExecReasonCancelFromRiskManagementAPI 						ExecReason = 106
+	// Self Match Prevention Newest Order Cancelled
+	ExecReasonSelfMatchPreventionNewestOrderCancelled ExecReason = 107
+	// Cancel due to min qty (Cancelduetovolquotedoptionorderrestedqtylessthanminordersize)
+	ExecReasonCancelDueToVolLessThanNinOrderSize		  ExecReason = 108
+	// Cancel RFC Order
+	ExecReasonCancelRFCOrder 													ExecReason = 109
+	// Cancel Upon Contract Expiration
+	ExecReasonCancelUponContractExpiration	 					ExecReason = 110
+	// System Cancel
+	ExecReasonSystemCancel 														ExecReason = 111
+	// ExecReason NULL value (uInt8NUll)
+	ExecReasonNULL																		ExecReason = 255
+)
+
+// IsNull returns true if the given value is Null
+func (e ExecReason) IsNull() bool{
+	return e == ExecReasonNULL
+}
+
