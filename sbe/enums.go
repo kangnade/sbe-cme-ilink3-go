@@ -129,7 +129,7 @@ func (cohi CustOrdHandlInst) IsNull() bool {
 }
 
 /*
-* CustOrdHandInst, enumNULL
+* CustOrdCapacity, enumNULL
 * Line 149
 */
 
