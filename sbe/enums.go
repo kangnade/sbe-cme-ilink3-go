@@ -14,11 +14,11 @@ type AvgPxInd UInt8NULL
 
 const(
 	// No Average Pricing
-	NoAveragePricing 																					AvgPxInd = 0
+	AvgPxIndNoAveragePricing 																					AvgPxInd = 0
 	// Trade is part of an Average Price Group Identified by the AvgPxGrp ID
-	TradeispartofanAveragePriceGroupIdentifiedbytheAvgPxGrpID AvgPxInd = 1
+	AvgPxIndTradeispartofanAveragePriceGroupIdentifiedbytheAvgPxGrpID AvgPxInd = 1
 	// Trade is part of a Notional Value Average Price Group
-	TradeispartofaNotionalValueAveragePriceGroup 							AvgPxInd = 3
+	AvgPxIndTradeispartofaNotionalValueAveragePriceGroup 							AvgPxInd = 3
 	// UInt8NULL has value 255, used for checking IsNull()
 	AvgPxIndNULL 																							AvgPxInd = 255
 )
@@ -37,8 +37,8 @@ type BooleanFlag UInt8
 
 const(
 	// Use Go's iota
-	BooleanFlagFalse BooleanFlag = iota
-	BooleanFlagTrue
+	BooleanFlagFalse 	BooleanFlag = 0
+	BooleanFlagTrue		BooleanFlag = 1
 )
 
 /*
@@ -112,20 +112,20 @@ const(
 * Line 141
 */
 
-type CustOrdHandInst CHAR
+type CustOrdHandlInst CHAR
 
 const(
-	CustOrdHandInstFCMProvidedScreen 		CustOrdHandInst = 'C'			// FCm provided screen
-	CustOrdHandInstOtherProvidedScreen 	CustOrdHandInst = 'D'		// Other provided screen
-	CustOrdHandInstFCMAPIorFix 					CustOrdHandInst = 'G'						// FCM API or FIX
-	CustOrdHandInstAlgoEngine 					CustOrdHandInst = 'H'							// Algo Engine
-	CustOrdHandInstDeskElectronic 			CustOrdHandInst = 'W'					// Desk Electronic
-	CustOrdHandInstClientElectronic 		CustOrdHandInst = 'Y'				// Client Electronic
-	CustOrdHandInstNULL 								CustOrdHandInst = 0
+	CustOrdHandlInstFCMProvidedScreen 		CustOrdHandlInst = 'C'			// FCm provided screen
+	CustOrdHandlInstOtherProvidedScreen 	CustOrdHandlInst = 'D'		// Other provided screen
+	CustOrdHandlInstFCMAPIorFix 					CustOrdHandlInst = 'G'						// FCM API or FIX
+	CustOrdHandlInstAlgoEngine 					CustOrdHandlInst = 'H'							// Algo Engine
+	CustOrdHandlInstDeskElectronic 			CustOrdHandlInst = 'W'					// Desk Electronic
+	CustOrdHandlInstClientElectronic 		CustOrdHandlInst = 'Y'				// Client Electronic
+	CustOrdHandlInstNULL 								CustOrdHandlInst = 0
 )
 
-func (cohi CustOrdHandInst) IsNull() bool {
-	return cohi == CustOrdHandInstNULL
+func (cohi CustOrdHandlInst) IsNull() bool {
+	return cohi == CustOrdHandlInstNULL
 }
 
 /*
@@ -286,7 +286,7 @@ const(
 	// Expire On Trading Session Close
 	ExpCycleExpireOnTradingSessionClose ExpCycle = 0
 	// Expiration at given date
-	ExpCycleExpirationatgivendate				ExpCycle = 2
+	ExpCycleExpirationAtGivenDate				ExpCycle = 2
 	// ExpCycle Null value
 	ExpCycleNULL												ExpCycle = 255
 )
@@ -307,12 +307,12 @@ const(
 	// Backup
 	FTIBackup		FTI = 0
 	FTIPrimary	FTI = 1
-	FTINull			FTI = 255
+	FTINULL			FTI = 255
 )
 
 // IsNull returns true if the FTI value is Null
 func (f FTI) IsNull() bool{
-	return f == FTINull
+	return f == FTINULL
 }
 
 /*
