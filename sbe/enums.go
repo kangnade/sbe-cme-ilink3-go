@@ -14,13 +14,13 @@ type AvgPxInd UInt8NULL
 
 const(
 	// No Average Pricing
-	NoAveragePricing AvgPxInd = 0
+	NoAveragePricing 																					AvgPxInd = 0
 	// Trade is part of an Average Price Group Identified by the AvgPxGrp ID
 	TradeispartofanAveragePriceGroupIdentifiedbytheAvgPxGrpID AvgPxInd = 1
 	// Trade is part of a Notional Value Average Price Group
-	TradeispartofaNotionalValueAveragePriceGroup AvgPxInd = 3
+	TradeispartofaNotionalValueAveragePriceGroup 							AvgPxInd = 3
 	// UInt8NULL has value 255, used for checking IsNull()
-	AvgPxIndNULL AvgPxInd = 255
+	AvgPxIndNULL 																							AvgPxInd = 255
 )
 
 // Returns if an AvgPxInd is NULL
@@ -49,9 +49,9 @@ const(
 type BooleanNULL UInt8NULL
 
 const(
-	BooleanNULLFalse BooleanNULL = 0
-	BooleanNULLTrue BooleanNULL = 1
-	BooleanNULLValue BooleanNULL = 255 // UInt8NULL is 255
+	BooleanNULLFalse 	BooleanNULL = 0
+	BooleanNULLTrue 	BooleanNULL = 1
+	BooleanNULLValue 	BooleanNULL = 255 // UInt8NULL is 255
 )
 
 // Returns true if BooleanNULL is BooleanNULLValue / null
@@ -67,9 +67,9 @@ func (b BooleanNULL) IsNull() bool{
 type ClearingAcctType EnumNULL
 
 const(
-	ClearingAcctTypeCustomer ClearingAcctType = 0
-	ClearingAcctTypeFirm ClearingAcctType = 1
-	ClearingAcctTypeNULL ClearingAcctType = 255 // from EnumNULLValue 255
+	ClearingAcctTypeCustomer 	ClearingAcctType = 0
+	ClearingAcctTypeFirm 			ClearingAcctType = 1
+	ClearingAcctTypeNULL 			ClearingAcctType = 255 // from EnumNULLValue 255
 )
 
 // Returns true if ClearingAcctType is null
@@ -85,9 +85,9 @@ func (acctType ClearingAcctType) IsNull() bool{
 type CmtaGiveUpCD CHAR
 
 const(
-	CmtaGiveUpCDGiveUp CmtaGiveUpCD = 'G'			// give up
+	CmtaGiveUpCDGiveUp 		CmtaGiveUpCD = 'G'			// give up
 	CmtaGiveUpCDSGXoffset CmtaGiveUpCD = 'S'	// SGX offset
-	CmtaGiveUpCDNULL = 0
+	CmtaGiveUpCDNULL 			CmtaGiveUpCD= 0
 )
 
 func (c CmtaGiveUpCD) IsNull() bool{
@@ -102,7 +102,7 @@ func (c CmtaGiveUpCD) IsNull() bool{
 type CrossTypeEnum UInt8
 
 const(
-	CrossTypeCross CrossTypeEnum = 3 		// default product configuration
+	CrossTypeCross 	CrossTypeEnum = 3 		// default product configuration
 	CrossTypeRCross CrossTypeEnum = 20		// RFQ + RFC Cross
 	CrossTypeCCross CrossTypeEnum = 21		// Committed Cross
 )
@@ -115,13 +115,13 @@ const(
 type CustOrdHandInst CHAR
 
 const(
-	CustOrdHandInstFCMProvidedScreen CustOrdHandInst = 'C'			// FCm provided screen
-	CustOrdHandInstOtherProvidedScreen CustOrdHandInst = 'D'		// Other provided screen
-	CustOrdHandInstFCMAPIorFix CustOrdHandInst = 'G'						// FCM API or FIX
-	CustOrdHandInstAlgoEngine CustOrdHandInst = 'H'							// Algo Engine
-	CustOrdHandInstDeskElectronic CustOrdHandInst = 'W'					// Desk Electronic
-	CustOrdHandInstClientElectronic CustOrdHandInst = 'Y'				// Client Electronic
-	CustOrdHandInstNULL CustOrdHandInst = 0
+	CustOrdHandInstFCMProvidedScreen 		CustOrdHandInst = 'C'			// FCm provided screen
+	CustOrdHandInstOtherProvidedScreen 	CustOrdHandInst = 'D'		// Other provided screen
+	CustOrdHandInstFCMAPIorFix 					CustOrdHandInst = 'G'						// FCM API or FIX
+	CustOrdHandInstAlgoEngine 					CustOrdHandInst = 'H'							// Algo Engine
+	CustOrdHandInstDeskElectronic 			CustOrdHandInst = 'W'					// Desk Electronic
+	CustOrdHandInstClientElectronic 		CustOrdHandInst = 'Y'				// Client Electronic
+	CustOrdHandInstNULL 								CustOrdHandInst = 0
 )
 
 func (cohi CustOrdHandInst) IsNull() bool {
@@ -137,15 +137,15 @@ type CustOrderCapacity EnumNULL
 
 const(
 	// Member trading for their own account
-	CustOrderCapacityMemberTradingForTheirOwnAccount CustOrderCapacity = 1
+	CustOrderCapacityMemberTradingForTheirOwnAccount 						CustOrderCapacity = 1
 	// Member firm trading for its proprietary account
-	CustOrderCapacityMemberFirmTradingForItsProprietaryAccount CustOrderCapacity = 2
+	CustOrderCapacityMemberFirmTradingForItsProprietaryAccount 	CustOrderCapacity = 2
 	// Member trading for another member or non member
-	CustOrderCapacityMemberTradingForAnotherMemberOrNonmember = 3
+	CustOrderCapacityMemberTradingForAnotherMemberOrNonmember 	CustOrderCapacity= 3
 	// All other
-	CustOrderCapacityAllOther = 4
+	CustOrderCapacityAllOther 																	CustOrderCapacity = 4
 	// CustOrderCapacity NULL value
-	CustOrderCapacityNULL CustOrderCapacity = 255
+	CustOrderCapacityNULL 																			CustOrderCapacity = 255
 )
 
 func (c CustOrderCapacity) IsNull() bool{
@@ -208,11 +208,11 @@ type ExecMode CHAR
 
 const(
 	// Aggressive
-	ExecModeAggressive = 'A'
+	ExecModeAggressive 	ExecMode = 'A'
 	// Passive
-	ExecModePassive = 'P'
+	ExecModePassive 		ExecMode = 'P'
 	// null value because of charNULL type
-	ExecModeNULL = 0
+	ExecModeNULL 				ExecMode = 0
 )
 
 func (e ExecMode) IsNull() bool{
@@ -315,3 +315,143 @@ func (f FTI) IsNull() bool{
 	return f == FTINull
 }
 
+/*
+* KeepAliveLapsed, uInt8
+* Line 199
+*/
+
+type KeepAliveLapsed UInt8
+
+const(
+	// Not Lapsed
+	KeepAliveLapsedNotLapsed KeepAliveLapsed = 0
+	// Lapsed
+	KeepAliveLapsedLapsed 	KeepAliveLapsed = 1
+)
+
+/*
+* ListUpdAct, CHAR
+* Line 203
+*/
+
+type ListUpdAct CHAR
+
+const(
+	// Add
+	ListUpdActAdd 		ListUpdAct = 'A'
+	// Delete
+	ListUpdActDelete	ListUpdAct = 'D'
+)
+
+/*
+* ManualOrdInd, enumNULL
+* Line 207
+*/
+
+type ManualOrdInd EnumNULL
+
+const(
+	// Automated
+	ManualOrdIndAutomated			ManualOrdInd = 0
+	// Manual
+	ManualOrdIndManual				ManualOrdInd = 1
+	// ManualOrdInd Null val
+	ManualOrdIndNULL					ManualOrdInd = 255
+)
+
+// Returns true if the ManualOrdInd value is NULL
+func (m ManualOrdInd) IsNull() bool{
+	return m == ManualOrdIndNULL
+}
+
+/*
+* ManualOrdIndReq, uInt8
+* Line 211
+*/
+
+type ManualOrdIndReq UInt8
+
+const(
+	// Automated
+	ManualOrdIndReqAutomated 	ManualOrdIndReq = 0
+	// Manual
+	ManualOrdIndReqManual			ManualOrdIndReq = 1
+)
+
+/*
+* MassActionOrdTyp, charNULL
+* Line 215
+*/
+
+type MassActionOrdTyp CHAR
+
+const(
+	// Limit
+	MassActionOrdTypLimit				MassActionOrdTyp = '2'
+	// Stop Limit
+	MassActionOrdTypStopLimit		MassActionOrdTyp = '4'
+	// MassActionOrdTyp NULL val
+	MassActionOrdTypNULL				MassActionOrdTyp = 0
+)
+
+// Returns true if the MassActionOrdTyp is NULL
+func (m MassActionOrdTyp) IsNull() bool{
+	return m == MassActionOrdTypNULL
+}
+
+/*
+* MassActionResponse, uInt8
+* Line 219
+*/
+
+type MassActionResponse UInt8
+
+const(
+	// Rejected
+	MassActionResponseRejected		MassActionResponse = 0
+	// Accepted
+	MassActionResponseAccepted		MassActionResponse = 1
+)
+
+/*
+* MassActionScope, uInt8
+* Line 223
+*/
+
+type MassActionScope UInt8
+
+const(
+	// Instrument
+	MassActionScopeInstrument					MassActionScope = 1
+	// All
+	MassActionScopeAll								MassActionScope = 7
+	// Market Segment ID
+	MassActionScopeMarketSegmentID		MassActionScope = 9
+	// Instrument Group
+	MassActionScopeInstrumentGroup		MassActionScope = 10
+	// Quote Set ID
+	MassActionScopeQuoteSetID					MassActionScope = 100
+)
+
+/*
+* MassCancelTIF, uInt8NULL
+* Line 230
+*/
+
+type MassCancelTIF UInt8NULL
+
+const(
+	// Day
+	MassCancelTIFDay							MassCancelTIF = 0
+	// Good Till Cancel
+	MassCancelTIFGoodTillCancel		MassCancelTIF = 1
+	// Good Till Date
+	MassCancelTIFGoodTillDate			MassCancelTIF = 6
+	// MassCancelTIF NULL val
+	MassCancelTIFNULL							MassCancelTIF = 255
+)
+
+// Returns true if the Mass Cancel TIF value is NULL
+func (m MassCancelTIF) IsNull() bool{
+	return m == MassCancelTIFNULL
+}
