@@ -423,25 +423,25 @@ var ExchangeFlowType = ExchFlowTyp{'R', 'E', 'C', 'O', 'V', 'E', 'R', 'A', 'B', 
 var HMACVersionValue = HMACVersion{'C', 'M', 'E', '-', '1', '-', 'S', 'H', 'A', '-', '2', '5', '6'}
 
 /*
- * --- IsNULL() methods for NULL types ---
+ * --- IsNull() methods for NULL types ---
  */
 
-func(v Int8NULL) IsNULL() bool{ return v == Int8NULLValue }
+func(v Int8NULL) IsNull() bool{ return v == Int8NULLValue }
 
-func(v Int32NULL) IsNULL() bool { return v == Int32NULLValue }
+func(v Int32NULL) IsNull() bool { return v == Int32NULLValue }
 
-func(v Int64NULL) IsNULL() bool { return v == Int64NULLValue }
+func(v Int64NULL) IsNull() bool { return v == Int64NULLValue }
 
-func(v UInt8NULL) IsNULL() bool { return v == UInt8NULLValue }
+func(v UInt8NULL) IsNull() bool { return v == UInt8NULLValue }
 
-func(v UInt16NULL) IsNULL() bool { return v == UInt16NULLValue }
+func(v UInt16NULL) IsNull() bool { return v == UInt16NULLValue }
 
-func(v UInt32NULL) IsNULL() bool {return v == UInt32NULLValue }
+func(v UInt32NULL) IsNull() bool {return v == UInt32NULLValue }
 
-func(v UInt64NULL) IsNULL() bool { return v == UInt64NULLValue }
+func(v UInt64NULL) IsNull() bool { return v == UInt64NULLValue }
 
-func(v EnumNULL) IsNULL() bool { return v == EnumNULLValue }
+func(v EnumNULL) IsNull() bool { return v == EnumNULLValue }
 
-func(v LocalMktDate) IsNULL() bool { return v == LocalMktDateNULL }
+func(v LocalMktDate) IsNull() bool { return v == LocalMktDateNULL }
 
-func(v CHAR) IsNULL() bool { return v == CharNULL }
+func(v CHAR) IsNull() bool { return v == CharNULL }
