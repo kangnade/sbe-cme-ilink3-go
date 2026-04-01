@@ -12,116 +12,116 @@ package sbe
 
 type AvgPxInd UInt8NULL
 
-const(
+const (
 	// No Average Pricing
-	AvgPxIndNoAveragePricing 																					AvgPxInd = 0
+	AvgPxIndNoAveragePricing AvgPxInd = 0
 	// Trade is part of an Average Price Group Identified by the AvgPxGrp ID
 	AvgPxIndTradeispartofanAveragePriceGroupIdentifiedbytheAvgPxGrpID AvgPxInd = 1
 	// Trade is part of a Notional Value Average Price Group
-	AvgPxIndTradeispartofaNotionalValueAveragePriceGroup 							AvgPxInd = 3
+	AvgPxIndTradeispartofaNotionalValueAveragePriceGroup AvgPxInd = 3
 	// UInt8NULL has value 255, used for checking IsNull()
-	AvgPxIndNULL 																							AvgPxInd = 255
+	AvgPxIndNULL AvgPxInd = 255
 )
 
 // Returns if an AvgPxInd is NULL
-func (p AvgPxInd) IsNull() bool{
+func (p AvgPxInd) IsNull() bool {
 	return p == AvgPxIndNULL
 }
 
 /*
 * BooleanFlag, uInt8
 * Line 120
-*/
+ */
 
 type BooleanFlag UInt8
 
-const(
+const (
 	// Use Go's iota
-	BooleanFlagFalse 	BooleanFlag = 0
-	BooleanFlagTrue		BooleanFlag = 1
+	BooleanFlagFalse BooleanFlag = 0
+	BooleanFlagTrue  BooleanFlag = 1
 )
 
 /*
 * BooleanNULL, uInt8NULL
 * Line 124
-*/
+ */
 
 type BooleanNULL UInt8NULL
 
-const(
-	BooleanNULLFalse 	BooleanNULL = 0
-	BooleanNULLTrue 	BooleanNULL = 1
-	BooleanNULLValue 	BooleanNULL = 255 // UInt8NULL is 255
+const (
+	BooleanNULLFalse BooleanNULL = 0
+	BooleanNULLTrue  BooleanNULL = 1
+	BooleanNULLValue BooleanNULL = 255 // UInt8NULL is 255
 )
 
 // Returns true if BooleanNULL is BooleanNULLValue / null
-func (b BooleanNULL) IsNull() bool{
+func (b BooleanNULL) IsNull() bool {
 	return b == BooleanNULLValue
 }
 
 /*
 * ClearingAcctType, enumNULL
 * Line 128
-*/
+ */
 
 type ClearingAcctType EnumNULL
 
-const(
-	ClearingAcctTypeCustomer 	ClearingAcctType = 0
-	ClearingAcctTypeFirm 			ClearingAcctType = 1
-	ClearingAcctTypeNULL 			ClearingAcctType = 255 // from EnumNULLValue 255
+const (
+	ClearingAcctTypeCustomer ClearingAcctType = 0
+	ClearingAcctTypeFirm     ClearingAcctType = 1
+	ClearingAcctTypeNULL     ClearingAcctType = 255 // from EnumNULLValue 255
 )
 
 // Returns true if ClearingAcctType is null
-func (acctType ClearingAcctType) IsNull() bool{
+func (acctType ClearingAcctType) IsNull() bool {
 	return acctType == ClearingAcctTypeNULL
 }
 
 /*
 * CmtaGiveUpCD, charNULL
 * Line 132
-*/
+ */
 
 type CmtaGiveUpCD CHAR
 
-const(
-	CmtaGiveUpCDGiveUp 		CmtaGiveUpCD = 'G'			// give up
-	CmtaGiveUpCDSGXoffset CmtaGiveUpCD = 'S'	// SGX offset
-	CmtaGiveUpCDNULL 			CmtaGiveUpCD= 0
+const (
+	CmtaGiveUpCDGiveUp    CmtaGiveUpCD = 'G' // give up
+	CmtaGiveUpCDSGXoffset CmtaGiveUpCD = 'S' // SGX offset
+	CmtaGiveUpCDNULL      CmtaGiveUpCD = 0
 )
 
-func (c CmtaGiveUpCD) IsNull() bool{
+func (c CmtaGiveUpCD) IsNull() bool {
 	return c == CmtaGiveUpCDNULL
 }
 
 /*
 * CrossTypeEnum, uInt8
 * Line 136
-*/
+ */
 
 type CrossTypeEnum UInt8
 
-const(
-	CrossTypeCross 	CrossTypeEnum = 3 		// default product configuration
-	CrossTypeRCross CrossTypeEnum = 20		// RFQ + RFC Cross
-	CrossTypeCCross CrossTypeEnum = 21		// Committed Cross
+const (
+	CrossTypeCross  CrossTypeEnum = 3  // default product configuration
+	CrossTypeRCross CrossTypeEnum = 20 // RFQ + RFC Cross
+	CrossTypeCCross CrossTypeEnum = 21 // Committed Cross
 )
 
 /*
 * CustOrdHandInst, charNULL
 * Line 141
-*/
+ */
 
 type CustOrdHandlInst CHAR
 
-const(
-	CustOrdHandlInstFCMProvidedScreen 		CustOrdHandlInst = 'C'			// FCm provided screen
-	CustOrdHandlInstOtherProvidedScreen 	CustOrdHandlInst = 'D'		// Other provided screen
-	CustOrdHandlInstFCMAPIorFix 					CustOrdHandlInst = 'G'						// FCM API or FIX
-	CustOrdHandlInstAlgoEngine 					CustOrdHandlInst = 'H'							// Algo Engine
-	CustOrdHandlInstDeskElectronic 			CustOrdHandlInst = 'W'					// Desk Electronic
-	CustOrdHandlInstClientElectronic 		CustOrdHandlInst = 'Y'				// Client Electronic
-	CustOrdHandlInstNULL 								CustOrdHandlInst = 0
+const (
+	CustOrdHandlInstFCMProvidedScreen   CustOrdHandlInst = 'C' // FCm provided screen
+	CustOrdHandlInstOtherProvidedScreen CustOrdHandlInst = 'D' // Other provided screen
+	CustOrdHandlInstFCMAPIorFix         CustOrdHandlInst = 'G' // FCM API or FIX
+	CustOrdHandlInstAlgoEngine          CustOrdHandlInst = 'H' // Algo Engine
+	CustOrdHandlInstDeskElectronic      CustOrdHandlInst = 'W' // Desk Electronic
+	CustOrdHandlInstClientElectronic    CustOrdHandlInst = 'Y' // Client Electronic
+	CustOrdHandlInstNULL                CustOrdHandlInst = 0
 )
 
 func (cohi CustOrdHandlInst) IsNull() bool {
@@ -131,56 +131,56 @@ func (cohi CustOrdHandlInst) IsNull() bool {
 /*
 * CustOrdCapacity, enumNULL
 * Line 149
-*/
+ */
 
 type CustOrderCapacity EnumNULL
 
-const(
+const (
 	// Member trading for their own account
-	CustOrderCapacityMemberTradingForTheirOwnAccount 						CustOrderCapacity = 1
+	CustOrderCapacityMemberTradingForTheirOwnAccount CustOrderCapacity = 1
 	// Member firm trading for its proprietary account
-	CustOrderCapacityMemberFirmTradingForItsProprietaryAccount 	CustOrderCapacity = 2
+	CustOrderCapacityMemberFirmTradingForItsProprietaryAccount CustOrderCapacity = 2
 	// Member trading for another member or non member
-	CustOrderCapacityMemberTradingForAnotherMemberOrNonmember 	CustOrderCapacity= 3
+	CustOrderCapacityMemberTradingForAnotherMemberOrNonmember CustOrderCapacity = 3
 	// All other
-	CustOrderCapacityAllOther 																	CustOrderCapacity = 4
+	CustOrderCapacityAllOther CustOrderCapacity = 4
 	// CustOrderCapacity NULL value
-	CustOrderCapacityNULL 																			CustOrderCapacity = 255
+	CustOrderCapacityNULL CustOrderCapacity = 255
 )
 
-func (c CustOrderCapacity) IsNull() bool{
+func (c CustOrderCapacity) IsNull() bool {
 	return c == CustOrderCapacityNULL
 }
 
 /*
 * DKReason, charNULL
 * Line 155
-*/
+ */
 
 type DKReason CHAR
 
-const(
+const (
 	// Unknown Security
-	DKReasonUnknownSecurity							DKReason = 'A'
+	DKReasonUnknownSecurity DKReason = 'A'
 	// Wrong Side
-	DKReasonWrongSide										DKReason = 'B'
+	DKReasonWrongSide DKReason = 'B'
 	// Quantity Exceeds Order
-	DKReasonQuantityExceedsOrder				DKReason = 'C'
+	DKReasonQuantityExceedsOrder DKReason = 'C'
 	// No Matching Order
-	DKReasonNoMatchingOrder							DKReason = 'D'
+	DKReasonNoMatchingOrder DKReason = 'D'
 	// Price Exceeds Limit
-	DKReasonPriceExceedsLimit						DKReason = 'E'
+	DKReasonPriceExceedsLimit DKReason = 'E'
 	// Calculation Difference
-	DKReasonCalculationDifference				DKReason = 'F'
+	DKReasonCalculationDifference DKReason = 'F'
 	// No Matching Execution Report
-	DKReasonNoMatchingExecutionReport		DKReason = 'G'
+	DKReasonNoMatchingExecutionReport DKReason = 'G'
 	// Other
-	DKReasonOther												DKReason = 'Z'
+	DKReasonOther DKReason = 'Z'
 	// DKReason NULL value
-	DKReasonNULL												DKReason = 0
+	DKReasonNULL DKReason = 0
 )
 
-func (d DKReason) IsNull() bool{
+func (d DKReason) IsNull() bool {
 	return d == DKReasonNULL
 }
 
@@ -188,11 +188,11 @@ func (d DKReason) IsNull() bool{
 * ExecAckStatus, uInt8
 * Line 165
 * Both const values are required as uInt8, no null required
-*/
+ */
 
 type ExecAckStatus UInt8
 
-const(
+const (
 	// Accepted
 	ExecAckStatusAccepted ExecAckStatus = 1
 	// Rejected
@@ -202,20 +202,20 @@ const(
 /*
 * ExecMode, charNULL
 * Line 169
-*/
+ */
 
 type ExecMode CHAR
 
-const(
+const (
 	// Aggressive
-	ExecModeAggressive 	ExecMode = 'A'
+	ExecModeAggressive ExecMode = 'A'
 	// Passive
-	ExecModePassive 		ExecMode = 'P'
+	ExecModePassive ExecMode = 'P'
 	// null value because of charNULL type
-	ExecModeNULL 				ExecMode = 0
+	ExecModeNULL ExecMode = 0
 )
 
-func (e ExecMode) IsNull() bool{
+func (e ExecMode) IsNull() bool {
 	return e == ExecModeNULL
 }
 
@@ -223,459 +223,458 @@ func (e ExecMode) IsNull() bool{
 * ExecReason, uInt8NULL
 * Line 173
 * uInt8NULL is optional and requires IsNull func
-*/
+ */
 
 type ExecReason UInt8NULL
 
-const(
+const (
 	// Market Exchange Option
-	ExecReasonMarketExchangeOption										ExecReason = 8
+	ExecReasonMarketExchangeOption ExecReason = 8
 	// Cancelled Not Best
-	ExecReasonCancelledNotBest												ExecReason = 9
+	ExecReasonCancelledNotBest ExecReason = 9
 	// Cancel on Disconnect
-	ExecReasonCancelOnDisconnect											ExecReason = 100
+	ExecReasonCancelOnDisconnect ExecReason = 100
 	// Self Match Prevention Oldest Order Cancelled
 	ExecReasonSelfMatchPreventionOldestOrderCancelled ExecReason = 103
 	// Cancel On Globex Credit Controls Violation
-	ExecReasonCancelOnGlobexCreditControlsViolation 	ExecReason = 104
+	ExecReasonCancelOnGlobexCreditControlsViolation ExecReason = 104
 	// Cancel From Firmsoft
-	ExecReasonCancelFromFirmsoft										  ExecReason = 105
-	// Cancel From Risk Management API 
-	ExecReasonCancelFromRiskManagementAPI 						ExecReason = 106
+	ExecReasonCancelFromFirmsoft ExecReason = 105
+	// Cancel From Risk Management API
+	ExecReasonCancelFromRiskManagementAPI ExecReason = 106
 	// Self Match Prevention Newest Order Cancelled
 	ExecReasonSelfMatchPreventionNewestOrderCancelled ExecReason = 107
 	// Cancel due to min qty (Cancelduetovolquotedoptionorderrestedqtylessthanminordersize)
-	ExecReasonCancelDueToVolLessThanNinOrderSize		  ExecReason = 108
+	ExecReasonCancelDueToVolLessThanNinOrderSize ExecReason = 108
 	// Cancel RFC Order
-	ExecReasonCancelRFCOrder 													ExecReason = 109
+	ExecReasonCancelRFCOrder ExecReason = 109
 	// Cancel Upon Contract Expiration
-	ExecReasonCancelUponContractExpiration	 					ExecReason = 110
+	ExecReasonCancelUponContractExpiration ExecReason = 110
 	// System Cancel
-	ExecReasonSystemCancel 														ExecReason = 111
+	ExecReasonSystemCancel ExecReason = 111
 	// ExecReason NULL value (uInt8NUll)
-	ExecReasonNULL																		ExecReason = 255
+	ExecReasonNULL ExecReason = 255
 )
 
 // IsNull returns true if the given value is Null
-func (e ExecReason) IsNull() bool{
+func (e ExecReason) IsNull() bool {
 	return e == ExecReasonNULL
 }
 
 /*
 * ExecTypTrdCxl, CHAR
 * Line 187
-*/
+ */
 
 type ExecTypTrdCxl CHAR
 
-const(
+const (
 	// Trade Correction
-	ExecTypTrdCxlTradeCorrection			ExecTypTrdCxl = 'G'
+	ExecTypTrdCxlTradeCorrection ExecTypTrdCxl = 'G'
 	// Trade Cancel
-	ExecTypTrdCxlTradeCancel					ExecTypTrdCxl = 'H'
+	ExecTypTrdCxlTradeCancel ExecTypTrdCxl = 'H'
 )
 
 /*
 * ExpCycle, uInt8NULL
 * Line 191
-*/
+ */
 
 type ExpCycle UInt8NULL
 
-const(
+const (
 	// Expire On Trading Session Close
 	ExpCycleExpireOnTradingSessionClose ExpCycle = 0
 	// Expiration at given date
-	ExpCycleExpirationAtGivenDate				ExpCycle = 2
+	ExpCycleExpirationAtGivenDate ExpCycle = 2
 	// ExpCycle Null value
-	ExpCycleNULL												ExpCycle = 255
+	ExpCycleNULL ExpCycle = 255
 )
 
 // IsNull returns true if the ExpCycle value is Null
-func (e ExpCycle) IsNull() bool{
+func (e ExpCycle) IsNull() bool {
 	return e == ExpCycleNULL
 }
 
 /*
 * FTI, uInt8NULL
 * Line 195
-*/
+ */
 
 type FTI UInt8NULL
 
-const(
+const (
 	// Backup
-	FTIBackup		FTI = 0
-	FTIPrimary	FTI = 1
-	FTINULL			FTI = 255
+	FTIBackup  FTI = 0
+	FTIPrimary FTI = 1
+	FTINULL    FTI = 255
 )
 
 // IsNull returns true if the FTI value is Null
-func (f FTI) IsNull() bool{
+func (f FTI) IsNull() bool {
 	return f == FTINULL
 }
 
 /*
 * KeepAliveLapsed, uInt8
 * Line 199
-*/
+ */
 
 type KeepAliveLapsed UInt8
 
-const(
+const (
 	// Not Lapsed
 	KeepAliveLapsedNotLapsed KeepAliveLapsed = 0
 	// Lapsed
-	KeepAliveLapsedLapsed 	KeepAliveLapsed = 1
+	KeepAliveLapsedLapsed KeepAliveLapsed = 1
 )
 
 /*
 * ListUpdAct, CHAR
 * Line 203
-*/
+ */
 
 type ListUpdAct CHAR
 
-const(
+const (
 	// Add
-	ListUpdActAdd 		ListUpdAct = 'A'
+	ListUpdActAdd ListUpdAct = 'A'
 	// Delete
-	ListUpdActDelete	ListUpdAct = 'D'
+	ListUpdActDelete ListUpdAct = 'D'
 )
 
 /*
 * ManualOrdInd, enumNULL
 * Line 207
-*/
+ */
 
 type ManualOrdInd EnumNULL
 
-const(
+const (
 	// Automated
-	ManualOrdIndAutomated			ManualOrdInd = 0
+	ManualOrdIndAutomated ManualOrdInd = 0
 	// Manual
-	ManualOrdIndManual				ManualOrdInd = 1
+	ManualOrdIndManual ManualOrdInd = 1
 	// ManualOrdInd Null val
-	ManualOrdIndNULL					ManualOrdInd = 255
+	ManualOrdIndNULL ManualOrdInd = 255
 )
 
 // Returns true if the ManualOrdInd value is NULL
-func (m ManualOrdInd) IsNull() bool{
+func (m ManualOrdInd) IsNull() bool {
 	return m == ManualOrdIndNULL
 }
 
 /*
 * ManualOrdIndReq, uInt8
 * Line 211
-*/
+ */
 
 type ManualOrdIndReq UInt8
 
-const(
+const (
 	// Automated
-	ManualOrdIndReqAutomated 	ManualOrdIndReq = 0
+	ManualOrdIndReqAutomated ManualOrdIndReq = 0
 	// Manual
-	ManualOrdIndReqManual			ManualOrdIndReq = 1
+	ManualOrdIndReqManual ManualOrdIndReq = 1
 )
 
 /*
 * MassActionOrdTyp, charNULL
 * Line 215
-*/
+ */
 
 type MassActionOrdTyp CHAR
 
-const(
+const (
 	// Limit
-	MassActionOrdTypLimit				MassActionOrdTyp = '2'
+	MassActionOrdTypLimit MassActionOrdTyp = '2'
 	// Stop Limit
-	MassActionOrdTypStopLimit		MassActionOrdTyp = '4'
+	MassActionOrdTypStopLimit MassActionOrdTyp = '4'
 	// MassActionOrdTyp NULL val
-	MassActionOrdTypNULL				MassActionOrdTyp = 0
+	MassActionOrdTypNULL MassActionOrdTyp = 0
 )
 
 // Returns true if the MassActionOrdTyp is NULL
-func (m MassActionOrdTyp) IsNull() bool{
+func (m MassActionOrdTyp) IsNull() bool {
 	return m == MassActionOrdTypNULL
 }
 
 /*
 * MassActionResponse, uInt8
 * Line 219
-*/
+ */
 
 type MassActionResponse UInt8
 
-const(
+const (
 	// Rejected
-	MassActionResponseRejected		MassActionResponse = 0
+	MassActionResponseRejected MassActionResponse = 0
 	// Accepted
-	MassActionResponseAccepted		MassActionResponse = 1
+	MassActionResponseAccepted MassActionResponse = 1
 )
 
 /*
 * MassActionScope, uInt8
 * Line 223
-*/
+ */
 
 type MassActionScope UInt8
 
-const(
+const (
 	// Instrument
-	MassActionScopeInstrument					MassActionScope = 1
+	MassActionScopeInstrument MassActionScope = 1
 	// All
-	MassActionScopeAll								MassActionScope = 7
+	MassActionScopeAll MassActionScope = 7
 	// Market Segment ID
-	MassActionScopeMarketSegmentID		MassActionScope = 9
+	MassActionScopeMarketSegmentID MassActionScope = 9
 	// Instrument Group
-	MassActionScopeInstrumentGroup		MassActionScope = 10
+	MassActionScopeInstrumentGroup MassActionScope = 10
 	// Quote Set ID
-	MassActionScopeQuoteSetID					MassActionScope = 100
+	MassActionScopeQuoteSetID MassActionScope = 100
 )
 
 /*
 * MassCancelTIF, uInt8NULL
 * Line 230
-*/
+ */
 
 type MassCancelTIF UInt8NULL
 
-const(
+const (
 	// Day
-	MassCancelTIFDay							MassCancelTIF = 0
+	MassCancelTIFDay MassCancelTIF = 0
 	// Good Till Cancel
-	MassCancelTIFGoodTillCancel		MassCancelTIF = 1
+	MassCancelTIFGoodTillCancel MassCancelTIF = 1
 	// Good Till Date
-	MassCancelTIFGoodTillDate			MassCancelTIF = 6
+	MassCancelTIFGoodTillDate MassCancelTIF = 6
 	// MassCancelTIF NULL val
-	MassCancelTIFNULL							MassCancelTIF = 255
+	MassCancelTIFNULL MassCancelTIF = 255
 )
 
 // Returns true if the Mass Cancel TIF value is NULL
-func (m MassCancelTIF) IsNull() bool{
+func (m MassCancelTIF) IsNull() bool {
 	return m == MassCancelTIFNULL
 }
 
 /*
 * MassCxlReqTyp, uInt8NULL
 * Line 235
-*/
+ */
 
 type MassCxlReqTyp UInt8NULL
 
-const(
+const (
 	// Mass Cancel Request Type Sender Sub ID
-	MassCxlReqTypSenderSubID			MassCxlReqTyp = 100
+	MassCxlReqTypSenderSubID MassCxlReqTyp = 100
 	// Mass Cancel Request TypeAccount
-	MassCxlReqTypAccount					MassCxlReqTyp = 101
+	MassCxlReqTypAccount MassCxlReqTyp = 101
 	// Mass Cancel Request Type Null value
-	MassCxlReqTypNULL							MassCxlReqTyp = 255
+	MassCxlReqTypNULL MassCxlReqTyp = 255
 )
 
 // Returns true if the Mass Cancel Request Type is NULL
-func (m MassCxlReqTyp) IsNull() bool{
+func (m MassCxlReqTyp) IsNull() bool {
 	return m == MassCxlReqTypNULL
 }
 
 /*
 * MassStatusOrdTyp, uInt8NULL
 * Line 239
-*/
+ */
 
 type MassStatusOrdTyp UInt8NULL
 
-const(
+const (
 	// Mass Status Order Type Sender SubID
-	MassStatusOrdTypSenderSubID			MassStatusOrdTyp = 100
-	// Mass Status Order Type 
-	MassStatusOrdTypAccount					MassStatusOrdTyp = 101
+	MassStatusOrdTypSenderSubID MassStatusOrdTyp = 100
+	// Mass Status Order Type
+	MassStatusOrdTypAccount MassStatusOrdTyp = 101
 	// Mass Status Order Type Null Value
-	MassStatusOrdTypNULL						MassStatusOrdTyp = 255
+	MassStatusOrdTypNULL MassStatusOrdTyp = 255
 )
 
 // Returns true if the Mass Status Order Type is NULL
-func (m MassStatusOrdTyp) IsNull() bool{
+func (m MassStatusOrdTyp) IsNull() bool {
 	return m == MassStatusOrdTypNULL
 }
 
 /*
 * MassStatusReqTyp, uInt8
 * Line 243
-*/
+ */
 
 type MassStatusReqTyp UInt8
 
-const(
+const (
 	// Mass Status Request Type Instrument
-	MassStatusReqTypInstrument				MassStatusReqTyp = 1
+	MassStatusReqTypInstrument MassStatusReqTyp = 1
 	// Mass Status Request Type Instrument Group
-	MassStatusReqTypInstrumentGroup		MassStatusReqTyp = 3
+	MassStatusReqTypInstrumentGroup MassStatusReqTyp = 3
 	// Mass Status Request Type All Orders
-	MassStatusReqTypAllOrders					MassStatusReqTyp = 7
+	MassStatusReqTypAllOrders MassStatusReqTyp = 7
 	// Mass Status Request Type Market Segment
-	MassStatusReqTypMarketSegment			MassStatusReqTyp = 100
+	MassStatusReqTypMarketSegment MassStatusReqTyp = 100
 )
 
 /*
 * MassStatusTIF, uInt8NULL
 * Line 249
-*/
+ */
 
 type MassStatusTIF UInt8NULL
 
-const(
+const (
 	// Mass Status TIF Day
-	MassStatusTIFDay				MassStatusTIF = 0
+	MassStatusTIFDay MassStatusTIF = 0
 	// Mass Status TIF GTC Good Till Canceled
-	MassStatusTIFGTC				MassStatusTIF = 1
+	MassStatusTIFGTC MassStatusTIF = 1
 	// Mass Status TIF GTD Good Till Date
-	MassStatusTIFGTD				MassStatusTIF = 6
+	MassStatusTIFGTD MassStatusTIF = 6
 	// Mass Status TIF GFS Good for Session
-	MassStatusTIFGFS				MassStatusTIF = 99
+	MassStatusTIFGFS MassStatusTIF = 99
 	// Mass Status TIF Day NULL value
-	MassStatusTIFNULL				MassStatusTIF = 255
+	MassStatusTIFNULL MassStatusTIF = 255
 )
 
 // Returns true if the MassStatusTIF value is Null
-func (m MassStatusTIF) IsNull() bool{
+func (m MassStatusTIF) IsNull() bool {
 	return m == MassStatusTIFNULL
 }
-
 
 /*
 * OFMOverrideReq, uInt8
 * Line 255
-*/
+ */
 
 type OFMOverrideReq UInt8
 
-const(
+const (
 	// OFM Override Request Disabled
-	OFMOverrideReqDisabled		OFMOverrideReq = 0
+	OFMOverrideReqDisabled OFMOverrideReq = 0
 	// OFM Override Request Enabled
-	OFMOverrideReqEnabled			OFMOverrideReq = 1
+	OFMOverrideReqEnabled OFMOverrideReq = 1
 )
 
 /*
 * OrdStatusTrd, uInt8
-* Line 
-*/
+* Line
+ */
 
 type OrdStatusTrd UInt8
 
-const(
+const (
 	// Order Status Trade Partially Filled
-	OrdStatusTrdPartiallyFilled		OrdStatusTrd = 1
+	OrdStatusTrdPartiallyFilled OrdStatusTrd = 1
 	// Order Status Trade Filled
-	OrdStatusTrdFilled						OrdStatusTrd = 2
+	OrdStatusTrdFilled OrdStatusTrd = 2
 )
 
 /*
 * OrdStatusTrdCxl, CHAR
 * Line 263
-*/
+ */
 
 type OrdStatusTrdCxl CHAR
 
-const(
+const (
 	// Order Status Trade Cancel Trade Correction
-	OrdStatusTrdCxlTradeCorrection			OrdStatusTrdCxl = 'G'
+	OrdStatusTrdCxlTradeCorrection OrdStatusTrdCxl = 'G'
 	// Order Status Trade Cancel Trade Cancel
-	OrdStatusTrdCxlTradeCancel					OrdStatusTrdCxl = 'H'
+	OrdStatusTrdCxlTradeCancel OrdStatusTrdCxl = 'H'
 )
 
 /*
 * OrderEventType, enumNULL
 * Line 267
-*/
+ */
 
 type OrderEventType EnumNULL
 
-const(
+const (
 	// Order Event Type Partially Filled
-	OrderEventTypePartiallyFilled		OrderEventType = 4
+	OrderEventTypePartiallyFilled OrderEventType = 4
 	// Order Event Type Filled
-	OrderEventTypeFilled						OrderEventType = 5
+	OrderEventTypeFilled OrderEventType = 5
 	// Order Event Type NULL value
-	OrderEventTypeNULL							OrderEventType = 255
+	OrderEventTypeNULL OrderEventType = 255
 )
 
 // Returns true if the Order Event Type is Null
-func (o OrderEventType) IsNull() bool{
+func (o OrderEventType) IsNull() bool {
 	return o == OrderEventTypeNULL
 }
 
 /*
 * OrderStatus, CHAR
 * Line 271
-*/
+ */
 
 type OrderStatus CHAR
 
-const(
+const (
 	// Order Status New
-	OrderStatusEnumNew								OrderStatus = '0'
+	OrderStatusEnumNew OrderStatus = '0'
 	// Order Status Partially Filled
-	OrderStatusEnumPartiallyFilled		OrderStatus = '1'
+	OrderStatusEnumPartiallyFilled OrderStatus = '1'
 	// Order Status Filled
-	OrderStatusEnumFilled		OrderStatus = '2' 
+	OrderStatusEnumFilled OrderStatus = '2'
 	// Order Status Cancelled
-	OrderStatusEnumCancelled					OrderStatus = '4' 
+	OrderStatusEnumCancelled OrderStatus = '4'
 	// Order Status Replaced
-	OrderStatusEnumReplaced						OrderStatus = '5' 
+	OrderStatusEnumReplaced OrderStatus = '5'
 	// Order Status Pending Cancel since version 6
-	OrderStatusEnumPendingCancel			OrderStatus = '6' 
+	OrderStatusEnumPendingCancel OrderStatus = '6'
 	// Order Status Rejected
-	OrderStatusEnumRejected						OrderStatus = '8' 
+	OrderStatusEnumRejected OrderStatus = '8'
 	// Order Status Expired
-	OrderStatusEnumExpired						OrderStatus = 'C'
+	OrderStatusEnumExpired OrderStatus = 'C'
 	// Order Status Pending Replace since version 6
-	OrderStatusEnumPendingReplace			OrderStatus = 'E'
+	OrderStatusEnumPendingReplace OrderStatus = 'E'
 	// Order Status Undefined
-	OrderStatusEnumUndefined					OrderStatus = 'U'
+	OrderStatusEnumUndefined OrderStatus = 'U'
 )
 
 /*
 * OrderType, charNULL
 * Line , 283
-*/
+ */
 
 type OrderType CHAR
 
-const(
+const (
 	// Order Type Market With Protection
-	OrderTypeMarketWithProtection						OrderType = '1'
+	OrderTypeMarketWithProtection OrderType = '1'
 	// Order Type Limit
-	OrderTypeLimit													OrderType = '2'
+	OrderTypeLimit OrderType = '2'
 	// Order Type Stop Limit
-	OrderTypeStopLimit											OrderType = '4'
+	OrderTypeStopLimit OrderType = '4'
 	// Order Type Market With Leftover as Limit
-	OrderTypeMarketWithLeftoverAsLimit			OrderType = 'K'
+	OrderTypeMarketWithLeftoverAsLimit OrderType = 'K'
 	// Order Type NULL value
-	OrderTypeNULL														OrderType = 0
+	OrderTypeNULL OrderType = 0
 )
 
 // Returns true if the Order Type is NULL
-func (o OrderType) IsNull() bool{
+func (o OrderType) IsNull() bool {
 	return o == OrderTypeNULL
 }
 
 /*
 * OrderTypeReq, CHAR
 * Line 289
-*/
+ */
 
 type OrderTypeReq CHAR
 
-const(
-  // OrderTypeReq Market with Protection
-	OrderTypeReqMarketWithProtection      OrderTypeReq = '1'
+const (
+	// OrderTypeReq Market with Protection
+	OrderTypeReqMarketWithProtection OrderTypeReq = '1'
 	// OrderTypeReq Limit
-	OrderTypeReqLimit                     OrderTypeReq = '2'
+	OrderTypeReqLimit OrderTypeReq = '2'
 	// OrderTypeReq Stop with Protection
-	OrderTypeReqStopWithProtection        OrderTypeReq = '3'
+	OrderTypeReqStopWithProtection OrderTypeReq = '3'
 	// OrderTypeReq Stop Limit
-	OrderTypeReqStopLimit                 OrderTypeReq = '4'
+	OrderTypeReqStopLimit OrderTypeReq = '4'
 	// OrderTypeReq Market With Leftover As Limit
 	OrderTypeReqMarketWithLeftoverAsLimit OrderTypeReq = 'K'
 )
@@ -683,382 +682,382 @@ const(
 /*
 * PartyDetailRole, uInt16
 * Line 296
-*/
+ */
 
 type PartyDetailRole UInt16
 
-const(
+const (
 	// Party Detail Role Executing Firm
-	PartyDetailRoleExecutingFirm				PartyDetailRole = 1
-		// Party Detail Role Customer Account
-	PartyDetailRoleCustomerAccount			PartyDetailRole = 24
-		// Party Detail Role Take Up Firm
-	PartyDetailRoleTakeUpFirm						PartyDetailRole = 96
-		// Party Detail Role Operator
-	PartyDetailRoleOperator							PartyDetailRole = 118
-		// Party Detail Role Take Up Account
-	PartyDetailRoleTakeUpAccount				PartyDetailRole = 1000
+	PartyDetailRoleExecutingFirm PartyDetailRole = 1
+	// Party Detail Role Customer Account
+	PartyDetailRoleCustomerAccount PartyDetailRole = 24
+	// Party Detail Role Take Up Firm
+	PartyDetailRoleTakeUpFirm PartyDetailRole = 96
+	// Party Detail Role Operator
+	PartyDetailRoleOperator PartyDetailRole = 118
+	// Party Detail Role Take Up Account
+	PartyDetailRoleTakeUpAccount PartyDetailRole = 1000
 )
 
 /*
 * QuoteAckStatus, uInt8
 * Line 303
-*/
+ */
 
 type QuoteAckStatus UInt8
 
-const(
+const (
 	// Quote Acknowledge Status Accepted
-	QuoteAckStatusAccepted			QuoteAckStatus = 0
+	QuoteAckStatusAccepted QuoteAckStatus = 0
 	// Quote Acknowledge Status Rejected
-	QuoteAckStatusRejected			QuoteAckStatus = 5
+	QuoteAckStatusRejected QuoteAckStatus = 5
 )
 
 /*
 * QuoteCxlStatus, uInt8
 * Line 307
-*/
+ */
 
 type QuoteCxlStatus UInt8
 
-const(
+const (
 	// Quote Cancel Status Cancel per Instrument
-	QuoteCxlStatusCancelperInstrument						QuoteCxlStatus = 1
-		// Quote Cancel Status Cancel per Instrument Group
-	QuoteCxlStatusCancelperInstrumentGroup			QuoteCxlStatus = 3
-		// Quote Cancel Status Cancel All Quotes
-	QuoteCxlStatusCancelAllQuotes								QuoteCxlStatus = 4
-		// Quote Cancel Status Rejected
-	QuoteCxlStatusRejected											QuoteCxlStatus = 5
-		// Quote Cancel Status Cancel per Quote Set
-	QuoteCxlStatusCancelperQuoteSet							QuoteCxlStatus = 100
+	QuoteCxlStatusCancelperInstrument QuoteCxlStatus = 1
+	// Quote Cancel Status Cancel per Instrument Group
+	QuoteCxlStatusCancelperInstrumentGroup QuoteCxlStatus = 3
+	// Quote Cancel Status Cancel All Quotes
+	QuoteCxlStatusCancelAllQuotes QuoteCxlStatus = 4
+	// Quote Cancel Status Rejected
+	QuoteCxlStatusRejected QuoteCxlStatus = 5
+	// Quote Cancel Status Cancel per Quote Set
+	QuoteCxlStatusCancelperQuoteSet QuoteCxlStatus = 100
 )
 
 /*
 * QuoteCxlTyp, uInt8
 * Line 314
-*/
+ */
 
 type QuoteCxlTyp UInt8
 
-const(
+const (
 	// Quote Cancel Type Cancel per Instrument
-	QuoteCxlTypCancelperInstrument					QuoteCxlTyp = 1
+	QuoteCxlTypCancelperInstrument QuoteCxlTyp = 1
 	// Quote Cancel Type Cancel per Instrument Group
-	QuoteCxlTypCancelperInstrumentGroup			QuoteCxlTyp = 3
+	QuoteCxlTypCancelperInstrumentGroup QuoteCxlTyp = 3
 	// Quote Cancel Type Cancel All Quotes
-	QuoteCxlTypCancelAllQuotes							QuoteCxlTyp = 4
+	QuoteCxlTypCancelAllQuotes QuoteCxlTyp = 4
 	// Quote Cancel Type Cancel per Quote Set
-	QuoteCxlTypCancelperQuoteSet						QuoteCxlTyp = 100
+	QuoteCxlTypCancelperQuoteSet QuoteCxlTyp = 100
 )
 
 /*
 * QuoteTyp, EnumNULL
 * Line 320
-*/
+ */
 
 type QuoteTyp EnumNULL
 
-const(
+const (
 	// Quote Type Tradeable
-	QuoteTypTradeable			QuoteTyp = 1
+	QuoteTypTradeable QuoteTyp = 1
 	// Quote Type NULL value
-	QuoteTypNULL					QuoteTyp = 255
+	QuoteTypNULL QuoteTyp = 255
 )
 
 // Returns true if QuoteTyp is NULL
-func (q QuoteTyp) IsNull() bool{
+func (q QuoteTyp) IsNull() bool {
 	return q == QuoteTypNULL
 }
 
 /*
 * RFQSide, uInt8NULL
 * Line 323
-*/
+ */
 
 type RFQSide UInt8NULL
 
-const(
+const (
 	// RFQSide Buy
-	RFQSideBuy				RFQSide = 1
-		// RFQSide Sell
-	RFQSideSell				RFQSide = 2
-		// RFQSide Cross
-	RFQSideCross			RFQSide = 8
-		// RFQSide NULL value
-	RFQSideNULL				RFQSide = 255
+	RFQSideBuy RFQSide = 1
+	// RFQSide Sell
+	RFQSideSell RFQSide = 2
+	// RFQSide Cross
+	RFQSideCross RFQSide = 8
+	// RFQSide NULL value
+	RFQSideNULL RFQSide = 255
 )
 
 // Returns true if RFQSide is NULL
-func (r RFQSide) IsNull() bool{
+func (r RFQSide) IsNull() bool {
 	return r == RFQSideNULL
 }
 
 /*
 * ReqResult, uInt8
 * Line 328
-*/
+ */
 
 type ReqResult UInt8
 
-const(
+const (
 	// ReqRequest Request Result Valid Request
-	ReqResultValidRequest																	ReqResult = 0
+	ReqResultValidRequest ReqResult = 0
 	// ReqRequest Request Result No Data Found That Matched Selection Crteria
-	ReqResultNoDataFoundThatMatchedSelectionCriteria			ReqResult = 2
+	ReqResultNoDataFoundThatMatchedSelectionCriteria ReqResult = 2
 	// ReqRequest Request Result Not Authorized to Retrieve Data
-	ReqResultNotAuthorizedtoRetrieveData									ReqResult = 3
+	ReqResultNotAuthorizedtoRetrieveData ReqResult = 3
 	// ReqRequest Request Result Data Temporarily Unavailable
-	ReqResultDataTemporarilyUnavailable										ReqResult = 4
+	ReqResultDataTemporarilyUnavailable ReqResult = 4
 )
 
 /*
 * SLEDS, uInt8NULL
 * Line 334
-*/
+ */
 
 type SLEDS UInt8NULL
 
-const(
+const (
 	// SLEDS Trade Clearing at Execution Price
-	SLEDSTradeClearingatExecutionPrice							SLEDS = 0
+	SLEDSTradeClearingatExecutionPrice SLEDS = 0
 	// SLEDS Trade Clearing at Alternate Clearing Price
-	SLEDSTradeClearingatAlternateClearingPrice			SLEDS = 1
+	SLEDSTradeClearingatAlternateClearingPrice SLEDS = 1
 	// SLEDS NULL value
-	SLEDSNULL																				SLEDS = 255
+	SLEDSNULL SLEDS = 255
 )
 
 // Return true if the SLEDS is NULL
-func (s SLEDS) IsNull() bool{
+func (s SLEDS) IsNull() bool {
 	return s == SLEDSNULL
 }
 
 /*
 * SMPI, charNULL
 * Line 338
-*/
+ */
 
 type SMPI CHAR
 
-const(
+const (
 	// SMPI Cancel Newest
-	SMPICancelNewest			SMPI = 'N'
+	SMPICancelNewest SMPI = 'N'
 	// SMPI Cancel Oldest
-	SMPICancelOldest			SMPI = 'O'
+	SMPICancelOldest SMPI = 'O'
 	// SMPI NULL
-	SMPINULL							SMPI = 0
+	SMPINULL SMPI = 0
 )
 
 // Returns true if the SMPI value is NULL
-func (s SMPI) IsNull() bool{
+func (s SMPI) IsNull() bool {
 	return s == SMPINULL
 }
 
 /*
 * SecRspTyp, UInt8
 * Line 342
-*/
+ */
 
 type SecRspTyp UInt8
 
-const(
+const (
 	// SecRspTyp Accept Security Proposal as is
-	SecRspTypAcceptSecurityProposalasis																			SecRspTyp = 1
-		// SecRspTyp Accept Security proposal with revisions as indicated in the message
-	SecRspTypAcceptSecurityProposalWithRevisionsAsIndicatedInTheMessage			SecRspTyp = 2
-		// SecRspTyp Reject Security Proposal
-	SecRspTypRejectSecurityProposal																					SecRspTyp = 5
+	SecRspTypAcceptSecurityProposalasis SecRspTyp = 1
+	// SecRspTyp Accept Security proposal with revisions as indicated in the message
+	SecRspTypAcceptSecurityProposalWithRevisionsAsIndicatedInTheMessage SecRspTyp = 2
+	// SecRspTyp Reject Security Proposal
+	SecRspTypRejectSecurityProposal SecRspTyp = 5
 )
 
 /*
 * ShortSaleType, enumNULL
 * Line 347
-*/
+ */
 
 type ShortSaleType EnumNULL
 
-const(
+const (
 	// ShortSaleType Long Sell
-	ShortSaleTypeLongSell																				ShortSaleType = 0
+	ShortSaleTypeLongSell ShortSaleType = 0
 	// ShortSaleType Short Sale With No Exemption SESH
-	ShortSaleTypeShortSaleWithNoExemptionSESH										ShortSaleType = 1 
+	ShortSaleTypeShortSaleWithNoExemptionSESH ShortSaleType = 1
 	// ShortSaleType Short Sale With Exemption SSEX
-	ShortSaleTypeShortSaleWithExemptionSSEX											ShortSaleType = 2
+	ShortSaleTypeShortSaleWithExemptionSSEX ShortSaleType = 2
 	// ShortSaleType Undisclosed Sell Information Not Available UNDI
-	ShortSaleTypeUndisclosedSellInformationNotAvailableUNDI			ShortSaleType = 3
+	ShortSaleTypeUndisclosedSellInformationNotAvailableUNDI ShortSaleType = 3
 	// ShortSaleType NULL Value
-	ShortSaleTypeNULL																						ShortSaleType = 255
+	ShortSaleTypeNULL ShortSaleType = 255
 )
 
 // Returns true if Short Sale Type is NULL
-func (s ShortSaleType) IsNull() bool{
+func (s ShortSaleType) IsNull() bool {
 	return s == ShortSaleTypeNULL
 }
 
 /*
 * Side, uInt8, since version 9
 * Line 353
-*/
+ */
 
 type Side UInt8
 
-const(
+const (
 	// Side Buy
-	SideBuy			Side = 1
+	SideBuy Side = 1
 	// Side Sell
-	SideSell		Side = 2
+	SideSell Side = 2
 )
 
 /*
-* SideNULL, enumNULL 
+* SideNULL, enumNULL
 * Line 357
-*/
+ */
 
 type SideNULL EnumNULL
 
-const(
+const (
 	// SideNULL Buy
-	SideNULLBuy			SideNULL = 1
+	SideNULLBuy SideNULL = 1
 	// SideNULL Sell
-	SideNULLSell		SideNULL = 2
+	SideNULLSell SideNULL = 2
 	// SideNULL Null Value
 	SideNULLNULL SideNULL = 255
 )
 
 // Returns true if the SideNULL value is NULL
-func (s SideNULL) IsNull() bool{
+func (s SideNULL) IsNull() bool {
 	return s == SideNULLNULL
 }
 
 /*
-* SideReq, uInt8 
+* SideReq, uInt8
 * Line 361
-*/
+ */
 
 type SideReq UInt8
 
-const(
+const (
 	// SideReq Buy
-	SideReqBuy						SideReq = 1 
+	SideReqBuy SideReq = 1
 	// SideReq Sell
-	SideReqSell						SideReq = 2
+	SideReqSell SideReq = 2
 	// SideReq  Undisclosed since version 6
-	SideReqUndisclosed		SideReq = 7
+	SideReqUndisclosed SideReq = 7
 )
 
 /*
-* SideTimeInForce, uInt8 
-* Line 
-*/
+* SideTimeInForce, uInt8
+* Line
+ */
 
 type SideTimeInForce UInt8
 
-const(
+const (
 	// SideTimeInForce Day
-	SideTimeInForceDay			SideTimeInForce = 0
+	SideTimeInForceDay SideTimeInForce = 0
 	// SideTimeInForce FAK
-	SideTimeInForceFAK			SideTimeInForce = 3
+	SideTimeInForceFAK SideTimeInForce = 3
 )
 
 /*
-* SplitMsg, uInt8NULL 
+* SplitMsg, uInt8NULL
 * Line 370
-*/
+ */
 
 type SplitMsg UInt8NULL
 
-const(
+const (
 	// SplitMsg Split Message Delayed
-	SplitMsgSplitMessageDelayed					SplitMsg = 0
+	SplitMsgSplitMessageDelayed SplitMsg = 0
 	// SplitMsg Out of Order Message Delayed
-	SplitMsgOutofOrderMessageDelayed		SplitMsg = 1
+	SplitMsgOutofOrderMessageDelayed SplitMsg = 1
 	// SplitMsg Complete Message Delayed
-	SplitMsgCompleteMessageDelayed			SplitMsg = 2
+	SplitMsgCompleteMessageDelayed SplitMsg = 2
 	// SplitMsg NULL value
-	SplitMsgNULL												SplitMsg = 255
+	SplitMsgNULL SplitMsg = 255
 )
 
 // Returns true if the SplitMsg value is Null
-func (s SplitMsg) IsNull() bool{
+func (s SplitMsg) IsNull() bool {
 	return s == SplitMsgNULL
 }
 
 /*
-* TimeInForce, uInt8NULL 
+* TimeInForce, uInt8NULL
 * Line 375
-*/
+ */
 
 type TimeInForce UInt8NULL
 
-const(
+const (
 	// TimeInForce Day
-	TimeInForceDay		TimeInForce = 0
+	TimeInForceDay TimeInForce = 0
 	// TimeInForce Good Till Cancel
-	TimeInForceGoodTillCancel		TimeInForce = 1
+	TimeInForceGoodTillCancel TimeInForce = 1
 	// TimeInForce Fill and Kill
-	TimeInForceFillAndKill		TimeInForce = 3 
+	TimeInForceFillAndKill TimeInForce = 3
 	// TimeInForce Fill or Kill
-	TimeInForceFillOrKill		TimeInForce = 4
+	TimeInForceFillOrKill TimeInForce = 4
 	// TimeInForce Good Till Date
-	TimeInForceGoodTillDate		TimeInForce = 6
+	TimeInForceGoodTillDate TimeInForce = 6
 	// TimeInForce Good For Session since version 6
-	TimeInForceGoodForSession		TimeInForce = 99
+	TimeInForceGoodForSession TimeInForce = 99
 	// TimeInForce NULL value
-	TimeInForceNULL		TimeInForce = 255
+	TimeInForceNULL TimeInForce = 255
 )
 
 // Returns true if the TimeInForce is NULL
-func (t TimeInForce) IsNull() bool{
+func (t TimeInForce) IsNull() bool {
 	return t == TimeInForceNULL
 }
 
 /*
 * TradeAddendum, uInt8
 * Line 383
-*/
+ */
 
 type TradeAddendum UInt8
 
-const(
+const (
 	// TradeAddendum Partially Filled
-	TradeAddendumPartiallyFilled		TradeAddendum = 4
+	TradeAddendumPartiallyFilled TradeAddendum = 4
 	// TradeAddendum Filled
-	TradeAddendumFilled							TradeAddendum = 5
+	TradeAddendumFilled TradeAddendum = 5
 	// TradeAddendum Trade Cancel
-	TradeAddendumTradeCancel				TradeAddendum = 100
+	TradeAddendumTradeCancel TradeAddendum = 100
 	// TradeAddendum Trade Correction
-	TradeAddendumTradeCorrection		TradeAddendum = 101
+	TradeAddendumTradeCorrection TradeAddendum = 101
 )
 
 /*
 * Set type
 * ExecInst, uInt8
 * Line 389
-*/
+ */
 
 type ExecInst UInt8
 
-const(
+const (
 	// ExecInst 1 = All or None, 0 = Not All or None
-	ExecInstAON					ExecInst = 1 << 0 			// (bit 0 set) 00000001 = 1
+	ExecInstAON ExecInst = 1 << 0 // (bit 0 set) 00000001 = 1
 	// ExecInst 1 = Only Best, 0 = Not Only Best
-	ExecInstOB					ExecInst = 1 << 1				// (bit 1 set) 00000010 = 2
+	ExecInstOB ExecInst = 1 << 1 // (bit 1 set) 00000010 = 2
 	// ExecInst 1 = Not Held, 0 = Not Not Held
-	ExecInstNH					ExecInst = 1 << 2				// (bit 2 set) 00000100 = 4
+	ExecInstNH ExecInst = 1 << 2 // (bit 2 set) 00000100 = 4
 	// ExecInst 0 = Reserved For Future Use
-	ExecInstReserved1		ExecInst = 1 << 3				// (bit 3 set) 00001000 = 8
+	ExecInstReserved1 ExecInst = 1 << 3 // (bit 3 set) 00001000 = 8
 	// ExecInst 0 = Reserved For Future Use
-	ExecInstReserved2		ExecInst = 1 << 4				// (bit 4 set) 00010000 = 16
+	ExecInstReserved2 ExecInst = 1 << 4 // (bit 4 set) 00010000 = 16
 	// ExecInst 0 = Reserved For Future Use
-	ExecInstReserved3		ExecInst = 1 << 5				// (bit 5 set) 00100000 = 32
+	ExecInstReserved3 ExecInst = 1 << 5 // (bit 5 set) 00100000 = 32
 	// ExecInst 0 = Reserved For Future Use
-	ExecInstReserved4		ExecInst = 1 << 6				// (bit 6 set) 01000000 = 64
+	ExecInstReserved4 ExecInst = 1 << 6 // (bit 6 set) 01000000 = 64
 	// ExecInst 0 = Reserved For Future Use
-	ExecInstReserved5		ExecInst = 1 << 7				// (bit 7 set) 10000000 = 128
+	ExecInstReserved5 ExecInst = 1 << 7 // (bit 7 set) 10000000 = 128
 )
 
 // HasFlag checks if a specific bit is set
 func (e ExecInst) HasFlag(flag ExecInst) bool {
-  // Bit-wise AND operator  
+	// Bit-wise AND operator
 	return e&flag != 0
 }
