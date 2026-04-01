@@ -660,6 +660,25 @@ func (o OrderType) IsNull() bool{
 	return o == OrderTypeNULL
 }
 
+/*
+* OrderTypeReq, CHAR
+* Line 289
+*/
+
+type OrderTypeReq CHAR
+
+const(
+  // OrderTypeReq Market with Protection
+	OrderTypeReqMarketWithProtection      OrderTypeReq = '1'
+	// OrderTypeReq Limit
+	OrderTypeReqLimit                     OrderTypeReq = '2'
+	// OrderTypeReq Stop with Protection
+	OrderTypeReqStopWithProtection        OrderTypeReq = '3'
+	// OrderTypeReq Stop Limit
+	OrderTypeReqStopLimit                 OrderTypeReq = '4'
+	// OrderTypeReq Market With Leftover As Limit
+	OrderTypeReqMarketWithLeftoverAsLimit OrderTypeReq = 'K'
+)
 
 /*
 * PartyDetailRole, uInt16
@@ -877,7 +896,7 @@ func (s ShortSaleType) IsNull() bool{
 }
 
 /*
-* Side, uInt8
+* Side, uInt8, since version 9
 * Line 353
 */
 
@@ -903,12 +922,12 @@ const(
 	// SideNULL Sell
 	SideNULLSell		SideNULL = 2
 	// SideNULL Null Value
-	SideNULLNULLVal SideNULL = 255
+	SideNULLNULL SideNULL = 255
 )
 
 // Returns true if the SideNULL value is NULL
 func (s SideNULL) IsNull() bool{
-	return s == SideNULLNULLVal
+	return s == SideNULLNULL
 }
 
 /*
