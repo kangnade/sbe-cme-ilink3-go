@@ -606,16 +606,440 @@ func (o OrderEventType) IsNull() bool{
 }
 
 /*
-*  ,
+* OrderStatus, CHAR
+* Line 271
+*/
+
+type OrderStatus CHAR
+
+const(
+	// Order Status New
+	OrderStatusEnumNew								OrderStatus = '0'
+	// Order Status Partially Filled
+	OrderStatusEnumPartiallyFilled		OrderStatus = '1'
+	// Order Status Filled
+	OrderStatusEnumFilled		OrderStatus = '2' 
+	// Order Status Cancelled
+	OrderStatusEnumCancelled					OrderStatus = '4' 
+	// Order Status Replaced
+	OrderStatusEnumReplaced						OrderStatus = '5' 
+	// Order Status Pending Cancel since version 6
+	OrderStatusEnumPendingCancel			OrderStatus = '6' 
+	// Order Status Rejected
+	OrderStatusEnumRejected						OrderStatus = '8' 
+	// Order Status Expired
+	OrderStatusEnumExpired						OrderStatus = 'C'
+	// Order Status Pending Replace since version 6
+	OrderStatusEnumPendingReplace			OrderStatus = 'E'
+	// Order Status Undefined
+	OrderStatusEnumUndefined					OrderStatus = 'U'
+)
+
+/*
+* OrderType, charNULL
+* Line , 283
+*/
+
+type OrderType CHAR
+
+const(
+	// Order Type Market With Protection
+	OrderTypeMarketWithProtection						OrderType = '1'
+	// Order Type Limit
+	OrderTypeLimit													OrderType = '2'
+	// Order Type Stop Limit
+	OrderTypeStopLimit											OrderType = '4'
+	// Order Type Market With Leftover as Limit
+	OrderTypeMarketWithLeftoverAsLimit			OrderType = 'K'
+	// Order Type NULL value
+	OrderTypeNULL														OrderType = 0
+)
+
+// Returns true if the Order Type is NULL
+func (o OrderType) IsNull() bool{
+	return o == OrderTypeNULL
+}
+
+
+/*
+* PartyDetailRole, uInt16
+* Line 296
+*/
+
+type PartyDetailRole UInt16
+
+const(
+	// Party Detail Role Executing Firm
+	PartyDetailRoleExecutingFirm				PartyDetailRole = 1
+		// Party Detail Role Customer Account
+	PartyDetailRoleCustomerAccount			PartyDetailRole = 24
+		// Party Detail Role Take Up Firm
+	PartyDetailRoleTakeUpFirm						PartyDetailRole = 96
+		// Party Detail Role Operator
+	PartyDetailRoleOperator							PartyDetailRole = 118
+		// Party Detail Role Take Up Account
+	PartyDetailRoleTakeUpAccount				PartyDetailRole = 1000
+)
+
+/*
+* QuoteAckStatus, uInt8
+* Line 303
+*/
+
+type QuoteAckStatus UInt8
+
+const(
+	// Quote Acknowledge Status Accepted
+	QuoteAckStatusAccepted			QuoteAckStatus = 0
+	// Quote Acknowledge Status Rejected
+	QuoteAckStatusRejected			QuoteAckStatus = 5
+)
+
+/*
+* QuoteCxlStatus, uInt8
+* Line 307
+*/
+
+type QuoteCxlStatus UInt8
+
+const(
+	// Quote Cancel Status Cancel per Instrument
+	QuoteCxlStatusCancelperInstrument						QuoteCxlStatus = 1
+		// Quote Cancel Status Cancel per Instrument Group
+	QuoteCxlStatusCancelperInstrumentGroup			QuoteCxlStatus = 3
+		// Quote Cancel Status Cancel All Quotes
+	QuoteCxlStatusCancelAllQuotes								QuoteCxlStatus = 4
+		// Quote Cancel Status Rejected
+	QuoteCxlStatusRejected											QuoteCxlStatus = 5
+		// Quote Cancel Status Cancel per Quote Set
+	QuoteCxlStatusCancelperQuoteSet							QuoteCxlStatus = 100
+)
+
+/*
+* QuoteCxlTyp, uInt8
+* Line 314
+*/
+
+type QuoteCxlTyp UInt8
+
+const(
+	// Quote Cancel Type Cancel per Instrument
+	QuoteCxlTypCancelperInstrument					QuoteCxlTyp = 1
+	// Quote Cancel Type Cancel per Instrument Group
+	QuoteCxlTypCancelperInstrumentGroup			QuoteCxlTyp = 3
+	// Quote Cancel Type Cancel All Quotes
+	QuoteCxlTypCancelAllQuotes							QuoteCxlTyp = 4
+	// Quote Cancel Type Cancel per Quote Set
+	QuoteCxlTypCancelperQuoteSet						QuoteCxlTyp = 100
+)
+
+/*
+* QuoteTyp, EnumNULL
+* Line 320
+*/
+
+type QuoteTyp EnumNULL
+
+const(
+	// Quote Type Tradeable
+	QuoteTypTradeable			QuoteTyp = 1
+	// Quote Type NULL value
+	QuoteTypNULL					QuoteTyp = 255
+)
+
+// Returns true if QuoteTyp is NULL
+func (q QuoteTyp) IsNull() bool{
+	return q == QuoteTypNULL
+}
+
+/*
+* RFQSide, uInt8NULL
+* Line 323
+*/
+
+type RFQSide UInt8NULL
+
+const(
+	// RFQSide Buy
+	RFQSideBuy				RFQSide = 1
+		// RFQSide Sell
+	RFQSideSell				RFQSide = 2
+		// RFQSide Cross
+	RFQSideCross			RFQSide = 8
+		// RFQSide NULL value
+	RFQSideNULL				RFQSide = 255
+)
+
+// Returns true if RFQSide is NULL
+func (r RFQSide) IsNull() bool{
+	return r == RFQSideNULL
+}
+
+/*
+* ReqResult, uInt8
+* Line 328
+*/
+
+type ReqResult UInt8
+
+const(
+	// ReqRequest Request Result Valid Request
+	ReqResultValidRequest																	ReqResult = 0
+	// ReqRequest Request Result No Data Found That Matched Selection Crteria
+	ReqResultNoDataFoundThatMatchedSelectionCriteria			ReqResult = 2
+	// ReqRequest Request Result Not Authorized to Retrieve Data
+	ReqResultNotAuthorizedtoRetrieveData									ReqResult = 3
+	// ReqRequest Request Result Data Temporarily Unavailable
+	ReqResultDataTemporarilyUnavailable										ReqResult = 4
+)
+
+/*
+* SLEDS, uInt8NULL
+* Line 334
+*/
+
+type SLEDS UInt8NULL
+
+const(
+	// SLEDS Trade Clearing at Execution Price
+	SLEDSTradeClearingatExecutionPrice							SLEDS = 0
+	// SLEDS Trade Clearing at Alternate Clearing Price
+	SLEDSTradeClearingatAlternateClearingPrice			SLEDS = 1
+	// SLEDS NULL value
+	SLEDSNULL																				SLEDS = 255
+)
+
+// Return true if the SLEDS is NULL
+func (s SLEDS) IsNull() bool{
+	return s == SLEDSNULL
+}
+
+/*
+* SMPI, charNULL
+* Line 338
+*/
+
+type SMPI CHAR
+
+const(
+	// SMPI Cancel Newest
+	SMPICancelNewest			SMPI = 'N'
+	// SMPI Cancel Oldest
+	SMPICancelOldest			SMPI = 'O'
+	// SMPI NULL
+	SMPINULL							SMPI = 0
+)
+
+// Returns true if the SMPI value is NULL
+func (s SMPI) IsNull() bool{
+	return s == SMPINULL
+}
+
+/*
+* SecRspTyp, UInt8
+* Line 342
+*/
+
+type SecRspTyp UInt8
+
+const(
+	// SecRspTyp Accept Security Proposal as is
+	SecRspTypAcceptSecurityProposalasis																			SecRspTyp = 1
+		// SecRspTyp Accept Security proposal with revisions as indicated in the message
+	SecRspTypAcceptSecurityProposalWithRevisionsAsIndicatedInTheMessage			SecRspTyp = 2
+		// SecRspTyp Reject Security Proposal
+	SecRspTypRejectSecurityProposal																					SecRspTyp = 5
+)
+
+/*
+* ShortSaleType, enumNULL
+* Line 347
+*/
+
+type ShortSaleType EnumNULL
+
+const(
+	// ShortSaleType Long Sell
+	ShortSaleTypeLongSell																				ShortSaleType = 0
+	// ShortSaleType Short Sale With No Exemption SESH
+	ShortSaleTypeShortSaleWithNoExemptionSESH										ShortSaleType = 1 
+	// ShortSaleType Short Sale With Exemption SSEX
+	ShortSaleTypeShortSaleWithExemptionSSEX											ShortSaleType = 2
+	// ShortSaleType Undisclosed Sell Information Not Available UNDI
+	ShortSaleTypeUndisclosedSellInformationNotAvailableUNDI			ShortSaleType = 3
+	// ShortSaleType NULL Value
+	ShortSaleTypeNULL																						ShortSaleType = 255
+)
+
+// Returns true if Short Sale Type is NULL
+func (s ShortSaleType) IsNull() bool{
+	return s == ShortSaleTypeNULL
+}
+
+/*
+* Side, uInt8
+* Line 353
+*/
+
+type Side UInt8
+
+const(
+	// Side Buy
+	SideBuy			Side = 1
+	// Side Sell
+	SideSell		Side = 2
+)
+
+/*
+* SideNULL, enumNULL 
+* Line 357
+*/
+
+type SideNULL EnumNULL
+
+const(
+	// SideNULL Buy
+	SideNULLBuy			SideNULL = 1
+	// SideNULL Sell
+	SideNULLSell		SideNULL = 2
+	// SideNULL Null Value
+	SideNULLNULLVal SideNULL = 255
+)
+
+// Returns true if the SideNULL value is NULL
+func (s SideNULL) IsNull() bool{
+	return s == SideNULLNULLVal
+}
+
+/*
+* SideReq, uInt8 
+* Line 361
+*/
+
+type SideReq UInt8
+
+const(
+	// SideReq Buy
+	SideReqBuy						SideReq = 1 
+	// SideReq Sell
+	SideReqSell						SideReq = 2
+	// SideReq  Undisclosed since version 6
+	SideReqUndisclosed		SideReq = 7
+)
+
+/*
+* SideTimeInForce, uInt8 
 * Line 
 */
 
-/*
-*  ,
-* Line 
-*/
+type SideTimeInForce UInt8
+
+const(
+	// SideTimeInForce Day
+	SideTimeInForceDay			SideTimeInForce = 0
+	// SideTimeInForce FAK
+	SideTimeInForceFAK			SideTimeInForce = 3
+)
 
 /*
-*  ,
-* Line 
+* SplitMsg, uInt8NULL 
+* Line 370
 */
+
+type SplitMsg UInt8NULL
+
+const(
+	// SplitMsg Split Message Delayed
+	SplitMsgSplitMessageDelayed					SplitMsg = 0
+	// SplitMsg Out of Order Message Delayed
+	SplitMsgOutofOrderMessageDelayed		SplitMsg = 1
+	// SplitMsg Complete Message Delayed
+	SplitMsgCompleteMessageDelayed			SplitMsg = 2
+	// SplitMsg NULL value
+	SplitMsgNULL												SplitMsg = 255
+)
+
+// Returns true if the SplitMsg value is Null
+func (s SplitMsg) IsNull() bool{
+	return s == SplitMsgNULL
+}
+
+/*
+* TimeInForce, uInt8NULL 
+* Line 375
+*/
+
+type TimeInForce UInt8NULL
+
+const(
+	// TimeInForce Day
+	TimeInForceDay		TimeInForce = 0
+	// TimeInForce Good Till Cancel
+	TimeInForceGoodTillCancel		TimeInForce = 1
+	// TimeInForce Fill and Kill
+	TimeInForceFillAndKill		TimeInForce = 3 
+	// TimeInForce Fill or Kill
+	TimeInForceFillOrKill		TimeInForce = 4
+	// TimeInForce Good Till Date
+	TimeInForceGoodTillDate		TimeInForce = 6
+	// TimeInForce Good For Session since version 6
+	TimeInForceGoodForSession		TimeInForce = 99
+	// TimeInForce NULL value
+	TimeInForceNULL		TimeInForce = 255
+)
+
+// Returns true if the TimeInForce is NULL
+func (t TimeInForce) IsNull() bool{
+	return t == TimeInForceNULL
+}
+
+/*
+* TradeAddendum, uInt8
+* Line 383
+*/
+
+type TradeAddendum UInt8
+
+const(
+	// TradeAddendum Partially Filled
+	TradeAddendumPartiallyFilled		TradeAddendum = 4
+	// TradeAddendum Filled
+	TradeAddendumFilled							TradeAddendum = 5
+	// TradeAddendum Trade Cancel
+	TradeAddendumTradeCancel				TradeAddendum = 100
+	// TradeAddendum Trade Correction
+	TradeAddendumTradeCorrection		TradeAddendum = 101
+)
+
+/*
+* Set type
+* ExecInst, uInt8
+* Line 389
+*/
+
+type ExecInst UInt8
+
+const(
+	// ExecInst 1 = All or None, 0 = Not All or None
+	ExecInstAON					ExecInst = 1 << 0 			// (bit 0 set) 00000001 = 1
+	// ExecInst 1 = Only Best, 0 = Not Only Best
+	ExecInstOB					ExecInst = 1 << 1				// (bit 1 set) 00000010 = 2
+	// ExecInst 1 = Not Held, 0 = Not Not Held
+	ExecInstNH					ExecInst = 1 << 2				// (bit 2 set) 00000100 = 4
+	// ExecInst 0 = Reserved For Future Use
+	ExecInstReserved1		ExecInst = 1 << 3				// (bit 3 set) 00001000 = 8
+	// ExecInst 0 = Reserved For Future Use
+	ExecInstReserved2		ExecInst = 1 << 4				// (bit 4 set) 00010000 = 16
+	// ExecInst 0 = Reserved For Future Use
+	ExecInstReserved3		ExecInst = 1 << 5				// (bit 5 set) 00100000 = 32
+	// ExecInst 0 = Reserved For Future Use
+	ExecInstReserved4		ExecInst = 1 << 6				// (bit 6 set) 01000000 = 64
+	// ExecInst 0 = Reserved For Future Use
+	ExecInstReserved5		ExecInst = 1 << 7				// (bit 7 set) 10000000 = 128
+)
+
+// HasFlag checks if a specific bit is set
+func (e ExecInst) HasFlag(flag ExecInst) bool {
+  // Bit-wise AND operator  
+	return e&flag != 0
+}
