@@ -455,3 +455,167 @@ const(
 func (m MassCancelTIF) IsNull() bool{
 	return m == MassCancelTIFNULL
 }
+
+/*
+* MassCxlReqTyp, uInt8NULL
+* Line 235
+*/
+
+type MassCxlReqTyp UInt8NULL
+
+const(
+	// Mass Cancel Request Type Sender Sub ID
+	MassCxlReqTypSenderSubID			MassCxlReqTyp = 100
+	// Mass Cancel Request TypeAccount
+	MassCxlReqTypAccount					MassCxlReqTyp = 101
+	// Mass Cancel Request Type Null value
+	MassCxlReqTypNULL							MassCxlReqTyp = 255
+)
+
+// Returns true if the Mass Cancel Request Type is NULL
+func (m MassCxlReqTyp) IsNull() bool{
+	return m == MassCxlReqTypNULL
+}
+
+/*
+* MassStatusOrdTyp, uInt8NULL
+* Line 239
+*/
+
+type MassStatusOrdTyp UInt8NULL
+
+const(
+	// Mass Status Order Type Sender SubID
+	MassStatusOrdTypSenderSubID			MassStatusOrdTyp = 100
+	// Mass Status Order Type 
+	MassStatusOrdTypAccount					MassStatusOrdTyp = 101
+	// Mass Status Order Type Null Value
+	MassStatusOrdTypNULL						MassStatusOrdTyp = 255
+)
+
+// Returns true if the Mass Status Order Type is NULL
+func (m MassStatusOrdTyp) IsNull() bool{
+	return m == MassStatusOrdTypNULL
+}
+
+/*
+* MassStatusReqTyp, uInt8
+* Line 243
+*/
+
+type MassStatusReqTyp UInt8
+
+const(
+	// Mass Status Request Type Instrument
+	MassStatusReqTypInstrument				MassStatusReqTyp = 1
+	// Mass Status Request Type Instrument Group
+	MassStatusReqTypInstrumentGroup		MassStatusReqTyp = 3
+	// Mass Status Request Type All Orders
+	MassStatusReqTypAllOrders					MassStatusReqTyp = 7
+	// Mass Status Request Type Market Segment
+	MassStatusReqTypMarketSegment			MassStatusReqTyp = 100
+)
+
+/*
+* MassStatusTIF, uInt8NULL
+* Line 249
+*/
+
+type MassStatusTIF UInt8NULL
+
+const(
+	// Mass Status TIF Day
+	MassStatusTIFDay				MassStatusTIF = 0
+	// Mass Status TIF GTC Good Till Canceled
+	MassStatusTIFGTC				MassStatusTIF = 1
+	// Mass Status TIF GTD Good Till Date
+	MassStatusTIFGTD				MassStatusTIF = 6
+	// Mass Status TIF GFS Good for Session
+	MassStatusTIFGFS				MassStatusTIF = 99
+	// Mass Status TIF Day NULL value
+	MassStatusTIFNULL				MassStatusTIF = 255
+)
+
+// Returns true if the MassStatusTIF value is Null
+func (m MassStatusTIF) IsNull() bool{
+	return m == MassStatusTIFNULL
+}
+
+
+/*
+* OFMOverrideReq, uInt8
+* Line 255
+*/
+
+type OFMOverrideReq UInt8
+
+const(
+	// OFM Override Request Disabled
+	OFMOverrideReqDisabled		OFMOverrideReq = 0
+	// OFM Override Request Enabled
+	OFMOverrideReqEnabled			OFMOverrideReq = 1
+)
+
+/*
+* OrdStatusTrd, uInt8
+* Line 
+*/
+
+type OrdStatusTrd UInt8
+
+const(
+	// Order Status Trade Partially Filled
+	OrdStatusTrdPartiallyFilled		OrdStatusTrd = 1
+	// Order Status Trade Filled
+	OrdStatusTrdFilled						OrdStatusTrd = 2
+)
+
+/*
+* OrdStatusTrdCxl, CHAR
+* Line 263
+*/
+
+type OrdStatusTrdCxl CHAR
+
+const(
+	// Order Status Trade Cancel Trade Correction
+	OrdStatusTrdCxlTradeCorrection			OrdStatusTrdCxl = 'G'
+	// Order Status Trade Cancel Trade Cancel
+	OrdStatusTrdCxlTradeCancel					OrdStatusTrdCxl = 'H'
+)
+
+/*
+* OrderEventType, enumNULL
+* Line 267
+*/
+
+type OrderEventType EnumNULL
+
+const(
+	// Order Event Type Partially Filled
+	OrderEventTypePartiallyFilled		OrderEventType = 4
+	// Order Event Type Filled
+	OrderEventTypeFilled						OrderEventType = 5
+	// Order Event Type NULL value
+	OrderEventTypeNULL							OrderEventType = 255
+)
+
+// Returns true if the Order Event Type is Null
+func (o OrderEventType) IsNull() bool{
+	return o == OrderEventTypeNULL
+}
+
+/*
+*  ,
+* Line 
+*/
+
+/*
+*  ,
+* Line 
+*/
+
+/*
+*  ,
+* Line 
+*/
