@@ -41,18 +41,25 @@ type Int64NULL int64
 // ilinkbinary.xml line 67 to 74 basic types, check Constants (basic types) for NULL values
 // line 67
 type UInt16 uint16
+
 // line 68
 type UInt16NULL uint16
+
 // line 69
 type UInt32 uint32
+
 // line 70
 type UInt32NULL uint32
+
 // line 71
 type UInt64 uint64
+
 // line 72
 type UInt64NULL uint64
+
 // line 73
 type UInt8 uint8
+
 // line 74
 type UInt8NULL uint8
 
@@ -76,7 +83,7 @@ type NoPtyUpd uint8
 
 // ilinkbinary.xml line 4 to line 20
 // line 4, description: char
-type CHAR byte 
+type CHAR byte
 
 // line 5, description: ClientFlowType
 // const is ClientFlowTypeValue
@@ -111,11 +118,9 @@ type CxrRejRsp byte
 
 // --- END CxlRejResponseTo Types ---
 
-
 // line 11, description: ExchangeFlowType
 // const is ExchangeFlowType
 type ExchFlowTyp [11]byte
-
 
 /*
  * Below Execution Types correspond to FIX 4.4 : ExecType <150> field
@@ -164,7 +169,6 @@ type ModifyStatus byte
 
 // --- END Execution Types ---
 
-
 // line 21, description: HMACVersion
 // const is HMACVersionValue
 type HMACVersion [13]byte
@@ -190,11 +194,10 @@ type SecurityReqType byte
  * Mass Action FIX 5.0 SP2 : MassActionType <1373> field
  */
 
- // line 26, description: Mass action type to represent mass cancel
+// line 26, description: Mass action type to represent mass cancel
 type MassAction byte
 
 // --- END Mass Action Types ---
-
 
 /*
  * --- Order Status Types / Partially Matched FIX 4.4 : OrdStatus <39> field ---
@@ -257,7 +260,7 @@ type QuoteCxTypeBySet uint8
  * --- String Types ---
  */
 
- // line 43, description: String with length of 10 required
+// line 43, description: String with length of 10 required
 type String10Req [10]byte
 
 // line 44, description: Optional string with length of 17
@@ -320,99 +323,99 @@ type StringLength35 [35]byte
 // line 63, description: StringLength6
 type StringLength6 [6]byte
 
- // --- END String Types ---
+// --- END String Types ---
 
 /*
  * --- Constants (basic types) ---
  */
 
-const(
-     UInt16NULLValue UInt16NULL = 65535
-     UInt32NULLValue UInt32NULL = 4294967295
-     UInt64NULLValue UInt64NULL = 18446744073709551615
-     UInt8NULLValue UInt8NULL = 255
-     CharNULL CHAR = 0 // line 65
-     EnumNULLValue EnumNULL = 255
-     UDIValue UDI = 'Y'
-     Int8NULLValue Int8NULL = 127
-     Int32NULLValue Int32NULL = 2147483647
-     Int64NULLValue Int64NULL = 9223372036854775807
-     LocalMktDateNULL LocalMktDate = 65535
-     NoPtyUpdValue NoPtyUpd = 1
-     GenAcceptedMktParID PartyIDSource = 'C'
-     SecurityIDSourceValue SecurityIDSource = '8'
-     SecurityReqTypeUSDCreation SecurityReqType = '1'
+const (
+	UInt16NULLValue            UInt16NULL       = 65535
+	UInt32NULLValue            UInt32NULL       = 4294967295
+	UInt64NULLValue            UInt64NULL       = 18446744073709551615
+	UInt8NULLValue             UInt8NULL        = 255
+	CharNULL                   CHAR             = 0 // line 65
+	EnumNULLValue              EnumNULL         = 255
+	UDIValue                   UDI              = 'Y'
+	Int8NULLValue              Int8NULL         = 127
+	Int32NULLValue             Int32NULL        = 2147483647
+	Int64NULLValue             Int64NULL        = 9223372036854775807
+	LocalMktDateNULL           LocalMktDate     = 65535
+	NoPtyUpdValue              NoPtyUpd         = 1
+	GenAcceptedMktParID        PartyIDSource    = 'C'
+	SecurityIDSourceValue      SecurityIDSource = '8'
+	SecurityReqTypeUSDCreation SecurityReqType  = '1'
 )
 
 /*
  * --- Cross Order Type Value ---
  */
-const(
-     CrossOrderLimitOrder CrossOrderType = '2'
-     CrossPrioritizationValue CrossPrioritization = '0'
-     CrossTypeValue CrossType = '3'
+const (
+	CrossOrderLimitOrder     CrossOrderType      = '2'
+	CrossPrioritizationValue CrossPrioritization = '0'
+	CrossTypeValue           CrossType           = '3'
 )
 
 /*
  * --- Cancel Type Values / FIX 4.4 : CxlRejResponseTo <434> field ---
  */
-const(
-     OrderCancelRequestRejected CxlRejRsp = '1'
-     OrderCancelReplaceRequestRejected CxrRejRsp = '2'
+const (
+	OrderCancelRequestRejected        CxlRejRsp = '1'
+	OrderCancelReplaceRequestRejected CxrRejRsp = '2'
 )
 
 /*
  * --- Execution Type Values / FIX 4.4 : ExecType <150> field ---
  */
-const(
-     ExecutionNew ExecTypNew = '0'
-     ExecutionRejected ExecTypRej = '8'
-     ExecutionOrderStatus ExecTypStatus = 'I'
-     ExecutionCanceled ExecTypeCxl = '4'
-     ExecutionExpired ExecTypeExp = 'C'
-     ExecutionReplaced ExecTypeModify = '5'
-     ExecutionPendingCanceled ExecTypePendCxl = '6'
-     ExecutionPendingReplace ExecTypePendModify = 'E'
-     ExecutionTrade ExecTypeTrade = 'F'
-     ExecutionReplaceStatus ModifyStatus = '5'
+const (
+	ExecutionNew             ExecTypNew         = '0'
+	ExecutionRejected        ExecTypRej         = '8'
+	ExecutionOrderStatus     ExecTypStatus      = 'I'
+	ExecutionCanceled        ExecTypeCxl        = '4'
+	ExecutionExpired         ExecTypeExp        = 'C'
+	ExecutionReplaced        ExecTypeModify     = '5'
+	ExecutionPendingCanceled ExecTypePendCxl    = '6'
+	ExecutionPendingReplace  ExecTypePendModify = 'E'
+	ExecutionTrade           ExecTypeTrade      = 'F'
+	ExecutionReplaceStatus   ModifyStatus       = '5'
 )
 
 /*
  * --- Leg Security ID Source Type Values / FIX 4.4 : FIX 4.4 : LegSecurityIDSource <603> field ---
  */
- const(
-     LegSecIDSourceExchangeSymbol LegSecIDSource = '8'
- )
+const (
+	LegSecIDSourceExchangeSymbol LegSecIDSource = '8'
+)
 
 /*
  * --- Mass Action Type Values / FIX 5.0 SP2 : MassActionType <1373> field ---
  */
-const(
-     MassActionCancelOrders MassAction = '3'
+const (
+	MassActionCancelOrders MassAction = '3'
 )
 
 /*
  * --- Order Status Type Values / Partially Matched FIX 4.4 : OrdStatus <39> field ---
  */
-const(
-     OrderStatusCanceled OrdStatusCxl = '4'
-     OrderStatusCancelRejected OrdStatusCxlRej = 'U'
-     OrderStatusCancelReplaceRejected OrdStatusCxrRej = 'U'
-     OrderStatusExpired OrdStatusExp = 'C'
-     OrderStatusNew OrdStatusNew = '0'
-     OrderStatusPendingCancel OrdStatusPendCxl = '6'
-     OrderStatusRejected OrdStatusRej = '8'
-     OrderStatusPendingReplace PendModStatus = 'E'
+const (
+	OrderStatusCanceled              OrdStatusCxl     = '4'
+	OrderStatusCancelRejected        OrdStatusCxlRej  = 'U'
+	OrderStatusCancelReplaceRejected OrdStatusCxrRej  = 'U'
+	OrderStatusExpired               OrdStatusExp     = 'C'
+	OrderStatusNew                   OrdStatusNew     = '0'
+	OrderStatusPendingCancel         OrdStatusPendCxl = '6'
+	OrderStatusRejected              OrdStatusRej     = '8'
+	OrderStatusPendingReplace        PendModStatus    = 'E'
 )
 
 /*
  * --- Quote Cancel Type Values ---
  */
 
-const(
-     QuoteCancelBySecurityGroup QuoteCxTypeByGroup = 3
-     QuoteCancelByInstrument QuoteCxTypeByInstr = 1
-     QuoteCancelBySet QuoteCxTypeBySet = 100
+const (
+	QuoteCancelBySecurityGroup QuoteCxTypeByGroup = 3
+	QuoteCancelByInstrument    QuoteCxTypeByInstr = 1
+	QuoteCancelBySet           QuoteCxTypeBySet   = 100
 )
 
 /*
@@ -426,22 +429,22 @@ var HMACVersionValue = HMACVersion{'C', 'M', 'E', '-', '1', '-', 'S', 'H', 'A', 
  * --- IsNull() methods for NULL types ---
  */
 
-func(v Int8NULL) IsNull() bool{ return v == Int8NULLValue }
+func (v Int8NULL) IsNull() bool { return v == Int8NULLValue }
 
-func(v Int32NULL) IsNull() bool { return v == Int32NULLValue }
+func (v Int32NULL) IsNull() bool { return v == Int32NULLValue }
 
-func(v Int64NULL) IsNull() bool { return v == Int64NULLValue }
+func (v Int64NULL) IsNull() bool { return v == Int64NULLValue }
 
-func(v UInt8NULL) IsNull() bool { return v == UInt8NULLValue }
+func (v UInt8NULL) IsNull() bool { return v == UInt8NULLValue }
 
-func(v UInt16NULL) IsNull() bool { return v == UInt16NULLValue }
+func (v UInt16NULL) IsNull() bool { return v == UInt16NULLValue }
 
-func(v UInt32NULL) IsNull() bool {return v == UInt32NULLValue }
+func (v UInt32NULL) IsNull() bool { return v == UInt32NULLValue }
 
-func(v UInt64NULL) IsNull() bool { return v == UInt64NULLValue }
+func (v UInt64NULL) IsNull() bool { return v == UInt64NULLValue }
 
-func(v EnumNULL) IsNull() bool { return v == EnumNULLValue }
+func (v EnumNULL) IsNull() bool { return v == EnumNULLValue }
 
-func(v LocalMktDate) IsNull() bool { return v == LocalMktDateNULL }
+func (v LocalMktDate) IsNull() bool { return v == LocalMktDateNULL }
 
-func(v CHAR) IsNull() bool { return v == CharNULL }
+func (v CHAR) IsNull() bool { return v == CharNULL }
