@@ -1,6 +1,8 @@
 package sbe
 
-import "encoding/binary"
+import (
+	"encoding/binary"
+)
 
 /*
 * message_session.go contains the message types in ilinkbinary.xml
