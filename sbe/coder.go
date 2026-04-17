@@ -97,7 +97,7 @@ func (c *Coder) Encode(data interface{}){
 // EncodeVarLen directly writes a []byte into the Coder's buffer.
 // This method is used for variable-length fields like DATA.VarData, which is already in []byte type.
 // There is no encoding to be done for DATA.VarData.
-// We need this because binary.Encode can only handle fixed-size types
+// We need this because binary.Encode can only handle fixed-size types for `data any` arg.
 func(c *Coder) EncodeRawVarLen(data []byte){
 	n := copy(c.buffer[c.offset:], data)
 	if n != len(data){
@@ -111,7 +111,7 @@ func(c *Coder) EncodeRawVarLen(data []byte){
 // DecodeVarLen reads in n bytes from the buffer into a []byte slice.
 // THis method is used for variable-length fields like DATA.VarData, which is already in []byte type.
 // There is no decoding to be done to DATA.VarData.
-// encoding/binary.Decode can only handle fixed size types.
+// encoding/binary.Decode can only handle fixed size types for `data any` arg.
 func(c *Coder) DecodeRawVarLen(n int) []byte{
 	if c.offset + n > len(c.buffer){
 		log.Printf("DecodeRaw: buffer too small at offset %d, needed %d remaining %d\n",
