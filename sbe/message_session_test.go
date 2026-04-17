@@ -23,20 +23,38 @@ func TestNegotiate500_RoundTrip(t *testing.T){
 	copy(original.Firm[:], "SAXOB") // must be within 5 bytes
 
 	// 2. Encode the Negotiate500 message to bytes
-	encoded := original.Encode()
+	encoded := Encoder(76 + 2 + int(original.Credentials.Length))
+	original.Encode(encoded)
+	encodedBytes := encoded.GetBytes()
 
 	// 3. Decode the previously encoded message
+	decoder := Decoder(encodedBytes)
 	decoded := &Negotiate500{}
-	decoded.Decode(encoded)
+	decoded.Decode(decoder)
 
 	// 4. Validate the result
-	if decoded.UUID != original.UUID{
-		t.Errorf("Unmatched UUID. Expected: %d, Result: %d.", original.UUID, decoded.UUID)
+	if decoded.UUID != original.UUID {
+		t.Errorf("Unmatched UUID. Expected: %d, Got: %d", original.UUID, decoded.UUID)
 	}
-	if !bytes.Equal(decoded.HMACSignature[:], original.HMACSignature[:]){
-		t.Errorf("Unmatched HMACSignature. Expected: %s, Result: %s", original.HMACSignature[:], decoded.HMACSignature[:])
+	if decoded.RequestTimestamp != original.RequestTimestamp {
+		t.Errorf("Unmatched RequestTimestamp. Expected: %d, Got: %d", original.RequestTimestamp, decoded.RequestTimestamp)
 	}
-	if !bytes.Equal(decoded.Credentials.VarData, original.Credentials.VarData){
-		t.Errorf("Unmatched Credential VarData. Expected: %s, Result: %s", original.Credentials.VarData, decoded.Credentials.VarData)
+	if !bytes.Equal(decoded.HMACSignature[:], original.HMACSignature[:]) {
+		t.Errorf("Unmatched HMACSignature. Expected: %s, Got: %s", original.HMACSignature[:], decoded.HMACSignature[:])
+	}
+	if !bytes.Equal(decoded.AccessKeyID[:], original.AccessKeyID[:]) {
+		t.Errorf("Unmatched AccessKeyID. Expected: %s, Got: %s", original.AccessKeyID[:], decoded.AccessKeyID[:])
+	}
+	if !bytes.Equal(decoded.Session[:], original.Session[:]) {
+		t.Errorf("Unmatched Session. Expected: %s, Got: %s", original.Session[:], decoded.Session[:])
+	}
+	if !bytes.Equal(decoded.Firm[:], original.Firm[:]) {
+		t.Errorf("Unmatched Firm. Expected: %s, Got: %s", original.Firm[:], decoded.Firm[:])
+	}
+	if decoded.Credentials.Length != original.Credentials.Length {
+		t.Errorf("Unmatched Credentials.Length. Expected: %d, Got: %d", original.Credentials.Length, decoded.Credentials.Length)
+	}
+	if !bytes.Equal(decoded.Credentials.VarData, original.Credentials.VarData) {
+		t.Errorf("Unmatched Credentials.VarData. Expected: %s, Got: %s", original.Credentials.VarData, decoded.Credentials.VarData)
 	}
 }

@@ -1,9 +1,5 @@
 package sbe
 
-import (
-	"encoding/binary"
-)
-
 /*
 * message_session.go contains the message types in ilinkbinary.xml
 * that handle the FIX Protocol session layer.
@@ -41,69 +37,32 @@ type Negotiate500 struct{
 }
 
 // Need Encode and Decode methods for Negotiate500
-func (m *Negotiate500) Encode() []byte{
-	// the total length of the buffer should be
-	// blockLength 0-75 bytes
-	// Credentials (DATA is UInt16) 2 bytes
-	// len(Credentials.VarData)
-	bufferSize := 76 + 2 + len(m.Credentials.VarData)
-
-	buffer := make([]byte, bufferSize)
-
-	// offset 0, 0-31, HMACSignature String32Req
-	copy(buffer[0:32], m.HMACSignature[:])
-
-	// offset 32, 32-52 AccessKeyID
-	copy(buffer[32:52], m.AccessKeyID[:])
-
-	// offset 52, 52-60 UUID
-	binary.LittleEndian.PutUint64(buffer[52:60], uint64(m.UUID))
-
-	// offet 60, 60-68 RequestTimestamp
-	binary.LittleEndian.PutUint64(buffer[60:68], uint64(m.RequestTimestamp))
-
-	// offset 68, 68-71, Session
-	copy(buffer[68:71], m.Session[:])
-
-	// offset 71, 71-76, Firm
-	copy(buffer[71:76], m.Firm[:])
-
-	// offset 76, Credential length uint16 == 2 bytes
-	binary.LittleEndian.PutUint16(buffer[76:78], uint16(m.Credentials.Length))
-
-	// If Credentials.length > 0, append data to the message
+func (m *Negotiate500) Encode(c *Coder){
+	c.Encode(&m.HMACSignature) 								// Offset = 0, 32 bytes
+	c.Encode(&m.AccessKeyID)									// Offset = 32, 20 bytes
+	c.Encode(&m.UUID)													// Offset = 52, 8 bytes
+	c.Encode(&m.RequestTimestamp)							// Offset = 60, 8 bytes
+	c.Encode(&m.Session)											// Offset = 68, 3 bytes
+	c.Encode(&m.Firm)													// Offset = 71, 5 bytes
+	// Field blockLength=76 bytes complete
+	// Data field:
+	c.Encode(&m.Credentials.Length)
 	if m.Credentials.Length > 0{
-		copy(buffer[78:], m.Credentials.VarData)
+		c.EncodeRawVarLen(m.Credentials.VarData)
 	}
-
-	return buffer
 }
 
-func(m *Negotiate500) Decode(buffer []byte){
-	// offset 0, 0-31, HMACSignature String32Req
-	copy(m.HMACSignature[:], buffer[0:32])
-
-	// offset 32, 32-52 AccessKeyID
-	copy(m.AccessKeyID[:], buffer[32:52])
-
-	// offset 52, 52-60 UUID
-	m.UUID = UInt64(binary.LittleEndian.Uint64(buffer[52:60]))
-
-	// offet 60, 60-68 RequestTimestamp
-	m.RequestTimestamp = UInt64(binary.LittleEndian.Uint64(buffer[60:68]))
-
-	// offset 68, 68-71, Session
-	copy(m.Session[:], buffer[68:71])
-
-	// offset 71, 71-76, Firm
-	copy(m.Firm[:], buffer[71:76])
-
-	// offset 76, Credential length uint16 == 2 bytes
-	m.Credentials.Length = UInt16(binary.LittleEndian.Uint16(buffer[76:78]))
-
-	// If Credentials.length > 0, append data to the message
+func(m *Negotiate500) Decode(c *Coder){
+	c.Decode(&m.HMACSignature) 								// Offset = 0, 32 bytes
+	c.Decode(&m.AccessKeyID)									// Offset = 32, 20 bytes
+	c.Decode(&m.UUID)													// Offset = 52, 8 bytes
+	c.Decode(&m.RequestTimestamp)							// Offset = 60, 8 bytes
+	c.Decode(&m.Session)											// Offset = 68, 3 bytes
+	c.Decode(&m.Firm)													// Offset = 71, 5 bytes
+	// Field blockLength=76 bytes complete
+	// Data field:
+	c.Decode(&m.Credentials.Length)
 	if m.Credentials.Length > 0{
-		m.Credentials.VarData = make([]byte, m.Credentials.Length)
-		copy(m.Credentials.VarData, buffer[78:])
+		m.Credentials.VarData = c.DecodeRawVarLen(int(m.Credentials.Length))
 	}
 } 

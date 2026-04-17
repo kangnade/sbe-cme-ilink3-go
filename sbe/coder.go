@@ -71,7 +71,8 @@ func (c *Coder) GetBytes() []byte{
 	return c.buffer[: c.offset]
 }
 
-// Decode decodes the given bytes and buffer them
+// Decode reads the buffer at the current offset position, and decodes them into
+// the field that data points to, then advance the offset position.
 func (c *Coder) Decode(data interface{}){
 	n, err := binary.Decode(c.buffer[c.offset:], c.order, data)
 	if err != nil{
@@ -82,7 +83,7 @@ func (c *Coder) Decode(data interface{}){
 	c.offset += n // move forward the offset exactly by how many bytes are consumed
 }
 
-// Encode encodes the given bytes and buffer them
+// Encode encodes the given bytes, buffer them and then advance the offset position
 func (c *Coder) Encode(data interface{}){
 	n, err := binary.Encode(c.buffer[c.offset:], c.order, data)
 	if err != nil{
@@ -91,4 +92,33 @@ func (c *Coder) Encode(data interface{}){
 		log.Fatal(err)
 	}
 	c.offset += n
+}
+
+// EncodeVarLen directly writes a []byte into the Coder's buffer.
+// This method is used for variable-length fields like DATA.VarData, which is already in []byte type.
+// There is no encoding to be done for DATA.VarData.
+// We need this because binary.Encode can only handle fixed-size types
+func(c *Coder) EncodeRawVarLen(data []byte){
+	n := copy(c.buffer[c.offset:], data)
+	if n != len(data){
+		log.Printf("EncodeRaw: buffer too small at offset %d, needed %d got %d\n",
+            c.offset, len(data), n)
+		log.Fatal("EncodeVarLen failed")
+	}
+	c.offset += n
+}
+
+// DecodeVarLen reads in n bytes from the buffer into a []byte slice.
+// THis method is used for variable-length fields like DATA.VarData, which is already in []byte type.
+// There is no decoding to be done to DATA.VarData.
+// encoding/binary.Decode can only handle fixed size types.
+func(c *Coder) DecodeRawVarLen(n int) []byte{
+	if c.offset + n > len(c.buffer){
+		log.Printf("DecodeRaw: buffer too small at offset %d, needed %d remaining %d\n",
+            c.offset, n, len(c.buffer) - c.offset)
+    log.Fatal("DecodeRaw failed")
+	}
+	data := make([]byte, n)
+	copy(data, c.buffer[c.offset: c.offset + n])
+	return data
 }
