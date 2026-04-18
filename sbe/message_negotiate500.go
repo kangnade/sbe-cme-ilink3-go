@@ -1,11 +1,12 @@
 package sbe
 
+import (
+	"fmt"
+	"strings"
+)
+
 /*
-* message_session.go contains the message types in ilinkbinary.xml
-* that handle the FIX Protocol session layer.
-* More specifically, here includes:
-* Message id = 500, 501, 502, 503, 504, 505, 506, 507
-* 508, 509, 510, 513
+* Defines the MessageType Negotiate500
  */
 
 // For copy and paste
@@ -38,6 +39,8 @@ type Negotiate500 struct{
 
 // Need Encode and Decode methods for Negotiate500
 func (m *Negotiate500) Encode(c *Coder){
+	c.Encode(&m.CustomerFlow)									// constant CustomerFlow
+	c.Encode(&m.HMACVersion)									// constant HMACVersion
 	c.Encode(&m.HMACSignature) 								// Offset = 0, 32 bytes
 	c.Encode(&m.AccessKeyID)									// Offset = 32, 20 bytes
 	c.Encode(&m.UUID)													// Offset = 52, 8 bytes
@@ -52,7 +55,9 @@ func (m *Negotiate500) Encode(c *Coder){
 	}
 }
 
-func(m *Negotiate500) Decode(c *Coder){
+func (m *Negotiate500) Decode(c *Coder){
+	c.Decode(&m.CustomerFlow)									// constant CustomerFlow
+	c.Decode(&m.HMACVersion)									// constant HMACVersion
 	c.Decode(&m.HMACSignature) 								// Offset = 0, 32 bytes
 	c.Decode(&m.AccessKeyID)									// Offset = 32, 20 bytes
 	c.Decode(&m.UUID)													// Offset = 52, 8 bytes
@@ -66,3 +71,26 @@ func(m *Negotiate500) Decode(c *Coder){
 		m.Credentials.VarData = c.DecodeRawVarLen(int(m.Credentials.Length))
 	}
 } 
+
+// GetMessageTypeID return the message TemplateId as UInt16, explicitly cast it
+// to uint16 to be used in parser.go
+func (m *Negotiate500) GetMessageTypeID() UInt16{
+	return 500
+}
+
+// PrettyPrint prints the Negotiate500 Message into readable output for debugging purpose
+func (m *Negotiate500) PrettyPrint(){
+	fmt.Printf("=== Negotiate500 (id = 500) ===\n")
+	fmt.Printf("CustomerFlow:					%s\n", strings.TrimRight(string(m.CustomerFlow[:]), "\x00"))
+	fmt.Printf("HMACVersion:					%s\n", strings.TrimRight(string(m.HMACVersion[:]), "\x00"))
+	fmt.Printf("HMACSignature:				%s\n", strings.TrimRight(string(m.HMACSignature[:]), "\x00"))
+	fmt.Printf("AccessKeyID:					%s\n", strings.TrimRight(string(m.AccessKeyID[:]), "\x00"))
+	fmt.Printf("UUID:									%d\n", m.UUID)
+	fmt.Printf("RequestTimestamp:			%d\n", m.RequestTimestamp)
+	fmt.Printf("Session:							%s\n", strings.TrimRight(string(m.Session[:]), "\x00"))
+	fmt.Printf("Firm:									%s\n", strings.TrimRight(string(m.Firm[:]), "\x00"))
+	fmt.Printf("Credentials.Length:		%d\n", m.Credentials.Length)
+	if m.Credentials.Length > 0{
+		fmt.Printf("Credentials.Data:		%s\n", string(m.Credentials.VarData))
+	}
+}
