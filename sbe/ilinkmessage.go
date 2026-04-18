@@ -21,9 +21,8 @@ type IlinkInbound interface{
 }
 
 type IlinkMessage interface{
-	Decode(c *Coder)
-	Encode(c *Coder)
-	GetMessageTypeID() UInt16
-	PrettyPrint()
+	// interface embedding
+	IlinkInbound
+	IlinkOutbound
 }
 

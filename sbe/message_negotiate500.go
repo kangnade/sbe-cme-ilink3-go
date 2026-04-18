@@ -2,7 +2,6 @@ package sbe
 
 import (
 	"fmt"
-	"strings"
 )
 
 /*
@@ -37,10 +36,17 @@ type Negotiate500 struct{
 	Credentials					DATA
 }
 
+// NewNegotitate500 returns the pointer to a new Negotiate500 message with constant values filled
+func NewNegotiate500() *Negotiate500{
+	return &Negotiate500{
+		// Initializes with the CustomerFlow and HMACVersion constant fields
+		CustomerFlow: ClientFlowTypeValue,
+		HMACVersion: HMACVersionValue,
+	}
+}
+
 // Need Encode and Decode methods for Negotiate500
 func (m *Negotiate500) Encode(c *Coder){
-	c.Encode(&m.CustomerFlow)									// constant CustomerFlow
-	c.Encode(&m.HMACVersion)									// constant HMACVersion
 	c.Encode(&m.HMACSignature) 								// Offset = 0, 32 bytes
 	c.Encode(&m.AccessKeyID)									// Offset = 32, 20 bytes
 	c.Encode(&m.UUID)													// Offset = 52, 8 bytes
@@ -56,8 +62,11 @@ func (m *Negotiate500) Encode(c *Coder){
 }
 
 func (m *Negotiate500) Decode(c *Coder){
-	c.Decode(&m.CustomerFlow)									// constant CustomerFlow
-	c.Decode(&m.HMACVersion)									// constant HMACVersion
+	// Manually populate the CustomerFlow and HMACVersion fields using defined values in types.go
+	// non-present on bytes on wire
+	m.CustomerFlow = ClientFlowTypeValue
+	m.HMACVersion = HMACVersionValue
+	// continue to read the fields that are present on wire
 	c.Decode(&m.HMACSignature) 								// Offset = 0, 32 bytes
 	c.Decode(&m.AccessKeyID)									// Offset = 32, 20 bytes
 	c.Decode(&m.UUID)													// Offset = 52, 8 bytes
@@ -81,16 +90,19 @@ func (m *Negotiate500) GetMessageTypeID() UInt16{
 // PrettyPrint prints the Negotiate500 Message into readable output for debugging purpose
 func (m *Negotiate500) PrettyPrint(){
 	fmt.Printf("=== Negotiate500 (id = 500) ===\n")
-	fmt.Printf("CustomerFlow:					%s\n", strings.TrimRight(string(m.CustomerFlow[:]), "\x00"))
-	fmt.Printf("HMACVersion:					%s\n", strings.TrimRight(string(m.HMACVersion[:]), "\x00"))
-	fmt.Printf("HMACSignature:				%s\n", strings.TrimRight(string(m.HMACSignature[:]), "\x00"))
-	fmt.Printf("AccessKeyID:					%s\n", strings.TrimRight(string(m.AccessKeyID[:]), "\x00"))
+	// For each field, calls the clean() method from utils.go to remove null byte
+	// using strings.TrimRight(string(m.field), "\x00") can be slow
+	fmt.Printf("CustomerFlow:					%s (Constant)\n", clean(m.CustomerFlow[:]))
+	fmt.Printf("HMACVersion:					%s (Constant)\n", clean(m.HMACVersion[:]))
+	fmt.Printf("HMACSignature:				%s\n", clean(m.HMACSignature[:]))
+	fmt.Printf("AccessKeyID:					%s\n", clean(m.AccessKeyID[:]))
 	fmt.Printf("UUID:									%d\n", m.UUID)
 	fmt.Printf("RequestTimestamp:			%d\n", m.RequestTimestamp)
-	fmt.Printf("Session:							%s\n", strings.TrimRight(string(m.Session[:]), "\x00"))
-	fmt.Printf("Firm:									%s\n", strings.TrimRight(string(m.Firm[:]), "\x00"))
+	fmt.Printf("Session:							%s\n", clean(m.Session[:]))
+	fmt.Printf("Firm:									%s\n", clean(m.Firm[:]))
 	fmt.Printf("Credentials.Length:		%d\n", m.Credentials.Length)
 	if m.Credentials.Length > 0{
-		fmt.Printf("Credentials.Data:		%s\n", string(m.Credentials.VarData))
+		fmt.Printf("Credentials.Data:		%x\n", m.Credentials.VarData)
 	}
+	fmt.Printf("===============================\n")
 }
