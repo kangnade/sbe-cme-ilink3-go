@@ -83,7 +83,7 @@ func (c *Coder) Decode(data interface{}){
 	c.offset += n // move forward the offset exactly by how many bytes are consumed
 }
 
-// Encode encodes the given bytes, buffer them and then advance the offset position
+// Encode encodes the given data bytes, writes them into the buffer and then advance the offset position
 func (c *Coder) Encode(data interface{}){
 	n, err := binary.Encode(c.buffer[c.offset:], c.order, data)
 	if err != nil{

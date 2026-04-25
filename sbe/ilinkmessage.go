@@ -8,21 +8,21 @@ package sbe
 * InlinkMessage interface: implements Encode, Decode, GetMessageTypeID and PrettyPrint methods
  */
 
-type IlinkOutbound interface{
+type ILinkOutbound interface{
 	Encode(c *Coder)
 	GetMessageTypeID() UInt16
 	PrettyPrint()
 }
 
-type IlinkInbound interface{
+type ILinkInbound interface{
 	Decode(c *Coder)
 	GetMessageTypeID() UInt16
 	PrettyPrint()
 }
 
-type IlinkMessage interface{
+type ILinkMessage interface{
 	// interface embedding
-	IlinkInbound
-	IlinkOutbound
+	ILinkInbound
+	ILinkOutbound
 }
 
