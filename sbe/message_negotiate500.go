@@ -61,30 +61,15 @@ func (m *Negotiate500) Encode(c *Coder){
 	}
 }
 
-func (m *Negotiate500) Decode(c *Coder){
-	// Manually populate the CustomerFlow and HMACVersion fields using defined values in types.go
-	// non-present on bytes on wire
-	m.CustomerFlow = ClientFlowTypeValue
-	m.HMACVersion = HMACVersionValue
-	// continue to read the fields that are present on wire
-	c.Decode(&m.HMACSignature) 								// Offset = 0, 32 bytes
-	c.Decode(&m.AccessKeyID)									// Offset = 32, 20 bytes
-	c.Decode(&m.UUID)													// Offset = 52, 8 bytes
-	c.Decode(&m.RequestTimestamp)							// Offset = 60, 8 bytes
-	c.Decode(&m.Session)											// Offset = 68, 3 bytes
-	c.Decode(&m.Firm)													// Offset = 71, 5 bytes
-	// Field blockLength=76 bytes complete
-	// Data field:
-	c.Decode(&m.Credentials.Length)
-	if m.Credentials.Length > 0{
-		m.Credentials.VarData = c.DecodeRawVarLen(int(m.Credentials.Length))
-	}
-} 
-
 // GetMessageTypeID return the message TemplateId as UInt16, explicitly cast it
 // to uint16 to be used in parser.go
 func (m *Negotiate500) GetMessageTypeID() UInt16{
 	return 500
+}
+
+// BlockLength returns the block length of Negotiate 500 as 76
+func (m *Negotiate500) BlockLength() uint16{
+	return 76
 }
 
 // PrettyPrint prints the Negotiate500 Message into readable output for debugging purpose

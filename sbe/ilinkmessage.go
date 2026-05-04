@@ -11,12 +11,14 @@ package sbe
 type ILinkOutbound interface{
 	Encode(c *Coder)
 	GetMessageTypeID() UInt16
+	BlockLength() uint16
 	PrettyPrint()
 }
 
 type ILinkInbound interface{
 	Decode(c *Coder)
 	GetMessageTypeID() UInt16
+	BlockLength() uint16
 	PrettyPrint()
 }
 
