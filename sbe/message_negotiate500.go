@@ -68,7 +68,7 @@ func (m *Negotiate500) GetMessageTypeID() UInt16{
 }
 
 // BlockLength returns the block length of Negotiate 500 as 76
-func (m *Negotiate500) BlockLength() uint16{
+func (m *Negotiate500) BlockLength() UInt16{
 	return 76
 }
 
