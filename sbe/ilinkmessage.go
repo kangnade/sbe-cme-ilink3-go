@@ -28,3 +28,10 @@ type ILinkMessage interface{
 	ILinkOutbound
 }
 
+// The MessageWireSize interface is implemented by message types that have variable length DAT fields
+// e.g. the Credentials DATA type field in Negotitate500 message
+// builder.go checks for this interface to determine the correct overall buffer size.
+// Message types in SBE that do not have the Credentials DATA fields do not need to implement this interface.
+type MessageWireSize interface{
+	WireSize() int
+}
