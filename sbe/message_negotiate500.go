@@ -67,6 +67,16 @@ func (m *Negotiate500) GetMessageTypeID() UInt16{
 	return 500
 }
 
+// WireSize returns the total bytes needed for the Negotitate500 message
+// MessageHeader (8 bytes) + BlockLength (76 bytes) + Credential.Length (2 bytes) + Credential.VarData
+func (m *Negotiate500) WireSize() int{
+	// 8 bytes MessageHeader
+	// 76 bytes BlockLength for Negotiate500
+	// 2 bytes for Credentials.Length
+	// int(Credentials.Length) bytes for Credentials.VarData
+	return 8 + int(m.BlockLength()) + 2 + int(m.Credentials.Length)
+}
+
 // BlockLength returns the block length of Negotiate 500 as 76
 func (m *Negotiate500) BlockLength() UInt16{
 	return 76
