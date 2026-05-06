@@ -52,7 +52,7 @@ func Decoder(data []byte) *Coder{
 }
 
 // The Encoder initializes a Coder with the given size of a CME ilink3 message type
-// specified in its blockLength and returns a pointer to it
+// specified in its size and returns a pointer to it
 func Encoder(size int) *Coder{
 	return &Coder{
 		buffer: make([]byte, size),
