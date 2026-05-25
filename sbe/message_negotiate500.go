@@ -45,7 +45,7 @@ func NewNegotiate500() *Negotiate500{
 	}
 }
 
-// Need Encode and Decode methods for Negotiate500
+// Encodes the Negotitate500 Message into SBE bytes to be sent to CME
 func (m *Negotiate500) Encode(c *Coder){
 	c.Encode(&m.HMACSignature) 								// Offset = 0, 32 bytes
 	c.Encode(&m.AccessKeyID)									// Offset = 32, 20 bytes
