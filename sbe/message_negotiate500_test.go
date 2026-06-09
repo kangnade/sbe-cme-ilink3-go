@@ -147,3 +147,31 @@ func TestWireSize(t *testing.T){
 		})
 	}
 }
+
+func TestEncode_Offsets(t *testing.T){
+	t.Parallel()
+
+	t.Run("Fixed Length Fields", func(t *testing.T){
+		m := makeNegotiate500()
+		bufSize := int(m.BlockLength()) + 2 // Negotiate500 Block Length 76 + 2 Credentials <data> length prefix
+		c := Encoder(bufSize)
+		m.Encode(c)
+
+		expectedOffset := 32 + 20 + 8 + 8 + 3 + 5 + 2
+		if received := c.GetOffset(); received != expectedOffset{
+			t.Errorf("Encode offset = %d, Expected = %d", received, expectedOffset)
+		}
+	})
+
+	t.Run("Variable Length Fields", func(t *testing.T){
+		m := makeNegotiate500WithCredentials()
+		bufSize := int(m.BlockLength()) + 2 + int(m.Credentials.Length)
+		c := Encoder(bufSize)
+		m.Encode(c)
+
+		expectedOffset := bufSize
+		if received := c.GetOffset(); received != expectedOffset{
+			t.Errorf("Encode offset = %d, Expected = %d", received, expectedOffset)
+		}
+	})
+}
