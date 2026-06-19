@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"io"
 	"os"
+	"strings"
 	"sync"
 	"testing"
 )
@@ -130,13 +131,16 @@ func TestBlockLength(t *testing.T){
 func TestWireSize(t *testing.T){
 	t.Parallel()
 
+	msgNoCred := makeNegotiate500()
+	msgWithCred := makeNegotiate500WithCredentials()
+
 	tests := []struct{
 		name 			string
 		msg  			*Negotiate500
 		expected 	int
 	}{
-		{"No Credentials", makeNegotiate500(), 8 + 76 + 2 + 0},
-		{"With Credentials", makeNegotiate500WithCredentials(), 8 + 76 + 2 + 23},
+		{"No Credentials", msgNoCred, 8 + 76 + 2 + 0},
+		{"With Credentials", msgWithCred, 8 + 76 + 2 + len(msgWithCred.Credentials.VarData)},
 	}
 
 	for _, st := range tests{
@@ -174,4 +178,48 @@ func TestEncode_Offsets(t *testing.T){
 			t.Errorf("Encode offset = %d, Expected = %d", received, expectedOffset)
 		}
 	})
+}
+
+func TestPrettyPrint_Output_Validation(t *testing.T){
+	m := makeNegotiate500WithCredentials()
+	output := capturePrettyPrint(m)
+
+	expectedFields := []string{
+		"=== Negotiate500 (id = 500) ===",
+		"CustomerFlow:",
+		"HMACVersion:",
+		"HMACSignature:",
+		"AccessKeyID:",
+		"UUID:",
+		"RequestTimestamp:",
+		"Session:",
+		"Firm:",
+		"Credentials.Length:",
+		"Credentials.Data:",
+	}
+
+	for _, field := range expectedFields{
+		if !strings.Contains(output, field){
+			t.Errorf("PrettyPrint() output missing field: %q", field)
+		}
+	}
+
+	expectedFlow := clean(ClientFlowTypeValue[:])
+	expectedHMAC := clean(HMACVersionValue[:])
+
+	if !strings.Contains(output, expectedFlow){
+		t.Errorf("PrettyPrint() failed to accurately resolve raw flow constant text %q", expectedFlow)
+	}
+	if !strings.Contains(output, expectedHMAC) {
+		t.Errorf("PrettyPrint() failed to accurately resolve raw HMAC scheme constant text %q", expectedHMAC)
+	}
+}
+
+func TestPrettyPrint_OmitEmptyCredentials(t *testing.T) {
+	m := makeNegotiate500() // Length = 0
+	output := capturePrettyPrint(m)
+
+	if strings.Contains(output, "Credentials.Data:") {
+		t.Error("PrettyPrint() structural leak: Printed empty Credentials.Data track even when byte array length is zero")
+	}
 }
