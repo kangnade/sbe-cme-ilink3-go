@@ -71,8 +71,8 @@ func (c *Coder) GetBytes() []byte{
 	return c.buffer[: c.offset]
 }
 
-// Decode reads the buffer at the current offset position, and decodes them into
-// the field that data points to, then advance the offset position.
+// Decode decodes binary data from buffer into data according to the given byte order,
+// then advance the offset position.
 func (c *Coder) Decode(data interface{}){
 	n, err := binary.Decode(c.buffer[c.offset:], c.order, data)
 	if err != nil{
@@ -109,7 +109,7 @@ func(c *Coder) EncodeRawVarLen(data []byte){
 }
 
 // DecodeVarLen reads in n bytes from the buffer into a []byte slice.
-// THis method is used for variable-length fields like DATA.VarData, which is already in []byte type.
+// This method is used for variable-length fields like DATA.VarData, which is already in []byte type.
 // There is no decoding to be done to DATA.VarData.
 // encoding/binary.Decode can only handle fixed size types for `data any` arg.
 func(c *Coder) DecodeRawVarLen(n int) []byte{
@@ -120,5 +120,6 @@ func(c *Coder) DecodeRawVarLen(n int) []byte{
 	}
 	data := make([]byte, n)
 	copy(data, c.buffer[c.offset: c.offset + n])
+	c.offset += n
 	return data
 }
