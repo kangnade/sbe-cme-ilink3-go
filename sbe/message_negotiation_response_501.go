@@ -1,5 +1,7 @@
 package sbe
 
+import "fmt"
+
 // Negotiation Response 501 is the negotiation response message from CME to customer.
 // The ilink 3 binary specification has: blockLength = 33, id = 501
 // Negotiation Response 501 is an inbound message type that implements the ILinkInbound interface
@@ -72,4 +74,40 @@ func (m *NegotiationResponse501) Decode(c *Coder){
 	if m.Credentials.Length > 0{
 		m.Credentials.VarData = c.DecodeRawVarLen(int(m.Credentials.Length))
 	}
+}
+
+// Encode method that encodes the outgoing byte stream into NegotiationResponse501 for testing purposes
+func (m *NegotiationResponse501) Encode(c *Coder){
+	c.Encode(&m.UUID)
+	c.Encode(&m.RequestTimestamp)
+	c.Encode(&m.SecretKeySecureIDExpiration)
+	c.Encode(&m.FaultToleranceIndicator)
+	c.Encode(&m.SplitMsg)
+	c.Encode(&m.PreviousSeqNo)
+	c.Encode(&m.PreviousUUID)
+	c.Encode(&m.EnvironmentIndicator)
+	c.Encode(&m.Credentials.Length)
+
+	if m.Credentials.Length > 0{
+		c.EncodeRawVarLen(m.Credentials.VarData)
+	}
+}
+
+// PrettyPrint prints the NegotiationResponse501 into readable formats for debugging purpoes
+func (m *NegotiationResponse501) PrettyPrint(){
+	fmt.Printf("=== Negotiation Response 501 ===\n")
+	fmt.Printf("ServerFlow:										%s\n", clean(m.ServerFlow[:]))
+	fmt.Printf("UUID:													%d\n", m.UUID)
+	fmt.Printf("RequestTimestamp:							%d\n", m.RequestTimestamp)
+	fmt.Printf("SecretKeySecureIDExpiration:	%d (IsNull: %t)\n", m.SecretKeySecureIDExpiration, m.SecretKeySecureIDExpiration.IsNull())
+	fmt.Printf("FaultToleranceIndicator:			%d (IsNull: %t)\n", m.FaultToleranceIndicator, m.FaultToleranceIndicator.IsNull())
+	fmt.Printf("SplitMsg:											%d (IsNull: %t)\n", m.SplitMsg, m.SplitMsg.IsNull())
+	fmt.Printf("PreviousSeqNo:								%d\n", m.PreviousSeqNo)
+	fmt.Printf("PreviousUUID:									%d\n", m.PreviousUUID)
+	fmt.Printf("EnvironmentIndicator:					%d (IsNull: %t)\n", m.EnvironmentIndicator, m.EnvironmentIndicator.IsNull())
+	fmt.Printf("Credentials.Length						%d\n", m.Credentials.Length)
+	if m.Credentials.Length > 0{
+		fmt.Printf("Credentials.Data:							%s\n", m.Credentials.ToString())
+	}
+	fmt.Printf("================================\n")
 }
